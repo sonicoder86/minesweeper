@@ -2,8 +2,66 @@
 <html>
 <head>
     <title>MineSweeper</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+
+        .minesweeper {
+            font-size: 0;
+        }
+    </style>
 </head>
 <body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">MineSweeper</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="main-region">
+        <div class="row">
+            <div class="span2 minesweeper">
+                <a class="btn active">1</a>
+                <a class="btn">2</a>
+                <a class="btn">3</a>
+                <a class="btn">4</a>
+                <a class="btn">5</a>
+                <a class="btn">6</a>
+                <a class="btn">7</a>
+                <a class="btn">8</a>
+                <a class="btn">9</a>
+                <a class="btn">9</a>
+                <a class="btn">9</a>
+                <a class="btn">9</a>
+                <a class="btn">9</a>
+                <a class="btn">9</a>
+                <a class="btn">9</a>
+                <a class="btn">9</a>
+            </div>
+        </div>
+    </div>
+    <h1>Bootstrap starter template</h1>
+    <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+
+</div> <!-- /container -->
 
 <script type="text/javascript" src="js/lib/require/require-2.1.8.js"></script>
 <script type="text/javascript" src="js/minesweeper/requireconfig.js"></script>
