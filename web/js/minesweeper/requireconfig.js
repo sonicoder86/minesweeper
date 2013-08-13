@@ -1,5 +1,6 @@
 require.config({
     baseUrl: 'js',
+    urlArgs: "bust=" + (new Date()).getTime(),
     paths: {
         jquery: 'lib/jquery/jquery-2.0.3',
         underscore: 'lib/underscore-1.5.1',
@@ -9,8 +10,8 @@ require.config({
     },
 
     shim: {
-        'jquery': {
-            exports: '$'
+        'underscore': {
+            exports: '_'
         },
         'backbone': {
             deps: ['underscore', 'jquery'],

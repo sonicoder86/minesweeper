@@ -35,8 +35,8 @@
     </div>
 </div>
 
-<div class="container">
-    <div id="main-region">
+<div class="container" id="main-region">
+    <div>
         <div class="row">
             <div class="span2 minesweeper">
                 <a class="btn active">1</a>
@@ -67,8 +67,9 @@
 <script type="text/javascript" src="js/minesweeper/requireconfig.js"></script>
 
 <script type="text/javascript">
-    requirejs(['jquery'], function($) {
-
+    requirejs(['minesweeper/application'], function(application) {
+        application.start();
+        console.log(application.request('maze:getFields'))
     });
 </script>
 </body>
