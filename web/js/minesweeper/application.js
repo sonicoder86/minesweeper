@@ -1,4 +1,4 @@
-define(['marionette', './module/mazegenerator'], function (Marionette, mazeGeneratorModule) {
+define(['marionette', './module/mazegenerator', './module/game'], function (Marionette, mazeGeneratorModule, gameModule) {
     var application = new Marionette.Application();
 
     application.addRegions({
@@ -6,6 +6,7 @@ define(['marionette', './module/mazegenerator'], function (Marionette, mazeGener
     });
 
     mazeGeneratorModule(application);
+    gameModule(application);
 
     return application;
 });

@@ -10,6 +10,10 @@
 
         .minesweeper {
             font-size: 0;
+        },
+
+        .maze-field {
+            float: left;
         }
     </style>
 </head>
@@ -69,7 +73,6 @@
 <script type="text/javascript">
     requirejs(['minesweeper/application'], function(application) {
         application.start();
-        console.log(application.request('maze:getFields'))
     });
 </script>
 </body>
