@@ -1,0 +1,22 @@
+{
+    "name": "Minesweeper",
+    "version": "0.1.0",
+    "author": "Blacksonic <support@nodejitsu.com>",
+    "description": "Minesweeper game built with Backbone Marionette, tested with Mocha on both client and server side",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/blacksonic/minesweeper.git"
+    },
+    "keywords": [
+        "minesweeper",
+        "backbone"
+    ],
+    "dependencies" : {
+        "jasmine-node"   :  "*",
+        "requirejs"   :  "*"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.6"
+    }
+}
