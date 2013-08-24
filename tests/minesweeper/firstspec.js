@@ -3,7 +3,7 @@
 //    requirejs(['minesweeper/application'], function(application) {
 //        console.log(application)
 //    });
-
+console.log('test');
     var depth;
 
     beforeEach(function(){

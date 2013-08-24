@@ -13,7 +13,8 @@
     ],
     "dependencies" : {
         "jasmine-node"   :  "*",
-        "requirejs"   :  "*"
+        "requirejs"   :  "*",
+        "karma"   :  "*"
     },
     "license": "MIT",
     "engines": {
