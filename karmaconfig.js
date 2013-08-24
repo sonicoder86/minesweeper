@@ -9,12 +9,13 @@ module.exports = function(config) {
 
 
     // frameworks to use
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'requirejs'],
 
 
     // list of files / patterns to load in the browser
     files: [
-        {pattern: 'tests/minesweeper/**/*.js', included: true}
+        {pattern: 'tests/minesweeper/**/*.js', included: false},
+        'tests/lib/requireconfig/karma.js'
     ],
 
 
