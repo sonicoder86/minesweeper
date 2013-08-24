@@ -1,3 +1,3 @@
 require.config({
-    baseUrl: '../../web/js'
+    baseUrl: '../web/js'
 });

@@ -1,9 +1,9 @@
 (function(){
 
-//    requirejs(['minesweeper/application'], function(application) {
-//        console.log(application)
-//    });
-console.log('test');
+    requirejs(['minesweeper/application'], function(application) {
+
+    });
+
     var depth;
 
     beforeEach(function(){

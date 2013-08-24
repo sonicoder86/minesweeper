@@ -7,17 +7,21 @@ module.exports = function(config) {
     // base path, that will be used to resolve files and exclude
     basePath: '',
 
-
     // frameworks to use
     frameworks: ['jasmine', 'requirejs'],
 
 
     // list of files / patterns to load in the browser
     files: [
+        'web/js/minesweeper/requireconfig.js',
+        {pattern: 'web/js/**/*', included: false},
         {pattern: 'tests/minesweeper/**/*.js', included: false},
         'tests/lib/requireconfig/karma.js'
     ],
 
+    preprocessors: {
+        '**/*.html': []
+    },
 
     // list of files to exclude
     exclude: [
