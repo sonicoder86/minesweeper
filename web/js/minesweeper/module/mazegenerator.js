@@ -33,12 +33,18 @@ define(['marionette', '../collection/field', '../model/field'], function (Marion
                 },
 
                 placeBombs: function(mazeSize, bombs) {
-                    for (var i = 0; i < bombs; i++) {
+                    for (var i = 0; i < bombs;) {
                         var randomX = Math.floor(Math.random() * (mazeSize));
                         var randomY = Math.floor(Math.random() * (mazeSize));
 
                         var field = this.fieldsArray[randomX][randomY];
+                        if (field.get('isBomb')) {
+                            continue;
+                        }
+
                         field.set('isBomb', true);
+                        i++;
+
                         _.forEach(field.getPossibleNeighbours(), function(possibleNeighbour) {
                             if (!this.fieldsArray[possibleNeighbour.x] || !this.fieldsArray[possibleNeighbour.x][possibleNeighbour.y]) {
                                 return;
