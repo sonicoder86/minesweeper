@@ -16,6 +16,10 @@ define(['backbone'], function (Backbone) {
 
             for (var i = x - 1; i <= x + 1; i++) {
                 for (var j = y - 1; j <= y + 1; j++) {
+                    if (x == i && y == j) {
+                        continue;
+                    }
+
                     neighbours.push({x: i, y: j});
                 }
             }
