@@ -8,7 +8,7 @@ define(['marionette', '../collection/field', '../model/field'], function (Marion
                 getMazeFields: function(mazeSize, bombs) {
                     if (!this.fieldsCollection) {
                         this.generateFields(mazeSize);
-                        this.placeBombs(bombs);
+                        this.placeBombs(mazeSize, bombs);
                     }
 
                     return this.fieldsCollection;
@@ -19,7 +19,6 @@ define(['marionette', '../collection/field', '../model/field'], function (Marion
 
                     var field;
                     for (var i = 0; i < mazeSize; i++) {
-
                         for (var j = 0; j < mazeSize; j++) {
                             field = new FieldModel({x: i, y: j});
 
@@ -33,8 +32,22 @@ define(['marionette', '../collection/field', '../model/field'], function (Marion
                     }
                 },
 
-                placeBombs: function(bombs) {
+                placeBombs: function(mazeSize, bombs) {
+                    for (var i = 0; i < bombs; i++) {
+                        var randomX = Math.floor(Math.random() * (mazeSize));
+                        var randomY = Math.floor(Math.random() * (mazeSize));
 
+                        var field = this.fieldsArray[randomX][randomY];
+                        field.set('isBomb', true);
+                        _.forEach(field.getPossibleNeighbours(), function(possibleNeighbour) {
+                            if (!this.fieldsArray[possibleNeighbour.x] || !this.fieldsArray[possibleNeighbour.x][possibleNeighbour.y]) {
+                                return;
+                            }
+                            var neighbour = this.fieldsArray[possibleNeighbour.x][possibleNeighbour.y];
+
+                            neighbour.set('bombsNear', neighbour.get('bombsNear') + 1)
+                        }, this);
+                    }
                 },
 
                 get: function(x, y) {
