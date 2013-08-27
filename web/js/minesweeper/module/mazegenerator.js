@@ -2,16 +2,20 @@ define(['marionette', '../collection/field', '../model/field'], function (Marion
     return function(application) {
         application.module('Maze.Generator', function(MazeGenerator, Minesweeper, Backbone, Marionette, $, _) {
             var API = {
-                getMazeFields: function(mazeSize) {
-                    if (!MazeGenerator.fieldsCollection) {
+                fieldsCollection: null,
+                fieldsArray: [],
+
+                getMazeFields: function(mazeSize, bombs) {
+                    if (!this.fieldsCollection) {
                         this.generateFields(mazeSize);
+                        this.placeBombs(bombs);
                     }
 
-                    return MazeGenerator.fieldsCollection;
+                    return this.fieldsCollection;
                 },
 
                 generateFields: function(mazeSize) {
-                    MazeGenerator.fieldsCollection = new FieldCollection();
+                    this.fieldsCollection = new FieldCollection();
 
                     var field;
                     for (var i = 0; i < mazeSize; i++) {
@@ -19,14 +23,31 @@ define(['marionette', '../collection/field', '../model/field'], function (Marion
                         for (var j = 0; j < mazeSize; j++) {
                             field = new FieldModel({x: i, y: j});
 
-                            MazeGenerator.fieldsCollection.add(field);
+                            if (!this.fieldsArray[i]) {
+                                this.fieldsArray[i] = [];
+                            }
+                            this.fieldsArray[i][j] = field;
+
+                            this.fieldsCollection.add(field);
                         }
                     }
+                },
+
+                placeBombs: function(bombs) {
+
+                },
+
+                get: function(x, y) {
+                    return this.fieldsArray[x][y];
                 }
             };
 
-            Minesweeper.reqres.setHandler("maze:getFields", function(mazeSize) {
-                return API.getMazeFields(mazeSize);
+            Minesweeper.reqres.setHandler("maze:getFields", function(mazeSize, bombs) {
+                return API.getMazeFields(mazeSize, bombs);
+            });
+
+            Minesweeper.reqres.setHandler("maze:get", function(x, y) {
+                return API.get(x, y);
             });
         });
     };

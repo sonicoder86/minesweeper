@@ -21,5 +21,4 @@ requirejs.config({
     urlArgs: null
 });
 
-require = requirejs;
 define = requirejs.define;
