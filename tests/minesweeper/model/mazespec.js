@@ -7,15 +7,11 @@ define(['minesweeper/model/maze'], function(MazeModel) {
         });
 
         it('should have 9 fields with size 3', function() {
-//            var fields = maze.getFields(3, 0);
-//
-//            expect(fields.length).toEqual(9);
+
         });
 
         it('should return same fields for consecutive calls', function() {
-//            var fields = maze.getFields(3, 0);
-//
-//            expect(fields).toEqual(maze.getFields(3, 0));
+
         });
     });
 });
