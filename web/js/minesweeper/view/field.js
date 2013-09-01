@@ -4,11 +4,11 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
         className: 'pull-left',
 
         events: {
-            'contextmenu .btn': 'triggerRightClick',
+            'contextmenu .btn': 'disableContextMenu',
             'mousedown .btn': 'triggerDownClick'
         },
 
-        triggerRightClick: function(e) {
+        disableContextMenu: function(e) {
             e.preventDefault();
         },
 

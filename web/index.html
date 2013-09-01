@@ -5,67 +5,45 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <style>
         body {
-            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+            padding-top: 50px;
         }
-
-        .minesweeper {
-            font-size: 0;
-        },
-
-        .maze-field {
-            float: left;
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">MineSweeper sss</a>
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
+            <a class="navbar-brand" href="#">MineSweeper</a>
         </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
 </div>
 
-<div class="container" id="main-region">
-    <div>
-        <div class="row">
-            <div class="span2 minesweeper">
-                <a class="btn active">1</a>
-                <a class="btn">2</a>
-                <a class="btn">3</a>
-                <a class="btn">4</a>
-                <a class="btn">5</a>
-                <a class="btn">6</a>
-                <a class="btn">7</a>
-                <a class="btn">8</a>
-                <a class="btn">9</a>
-                <a class="btn">9</a>
-                <a class="btn">9</a>
-                <a class="btn">9</a>
-                <a class="btn">9</a>
-                <a class="btn">9</a>
-                <a class="btn">9</a>
-                <a class="btn">9</a>
-            </div>
-        </div>
-    </div>
-    <h1>Bootstrap starter template</h1>
-    <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+<div class="container">
 
-</div> <!-- /container -->
+    <div class="starter-template">
+        <h1>Backbone MineSweeper game</h1>
+        <p class="lead">Click on the fields to start the game.</p>
+    </div>
+    <div id="main-region" style="margin: auto; width: 300px"></div>
+
+</div><!-- /.container -->
 
 <script type="text/javascript" src="js/lib/require/require-2.1.8.js"></script>
 <script type="text/javascript" src="js/minesweeper/requireconfig.js"></script>
