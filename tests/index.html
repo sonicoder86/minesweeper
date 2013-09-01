@@ -12,32 +12,29 @@
     <script src="../web/js/minesweeper/requireconfig.js"></script>
     <script src="lib/requireconfig/web.js"></script>
 
-    <script src="minesweeper/firstspec.js"></script>
     <script type="text/javascript">
-        (function() {
+        require(['jquery'], function ($) {
             var jasmineEnv = jasmine.getEnv();
-            jasmineEnv.updateInterval = 250;
+            jasmineEnv.updateInterval = 1000;
 
             var htmlReporter = new jasmine.HtmlReporter();
+
             jasmineEnv.addReporter(htmlReporter);
 
-            jasmineEnv.specFilter = function(spec) {
+            jasmineEnv.specFilter = function (spec) {
                 return htmlReporter.specFilter(spec);
             };
 
-            var currentWindowOnload = window.onload;
-            window.onload = function() {
-                if (currentWindowOnload) {
-                    currentWindowOnload();
-                }
+            var specs = [];
+            specs.push('../../tests/minesweeper/model/fieldspec');
+            specs.push('../../tests/minesweeper/model/mazespec');
 
-                execJasmine();
-            };
-
-            function execJasmine() {
-                jasmineEnv.execute();
-            }
-        })();
+            $(function () {
+                require(specs, function (spec) {
+                    jasmineEnv.execute();
+                });
+            });
+        });
     </script>
 </head>
 <body>
