@@ -1,4 +1,4 @@
-define(['backbone', '../model/field', '../collection/field'], function (Backbone, FieldModel, FieldCollection) {
+define(['backbone', '../model/field', '../collection/field', 'underscore'], function (Backbone, FieldModel, FieldCollection, _) {
     return Backbone.Model.extend({
         fieldsCollection: null,
         fieldsArray: [],
@@ -41,8 +41,8 @@ define(['backbone', '../model/field', '../collection/field'], function (Backbone
 
         placeBombs: function()
         {
-            var size = this.get('size');
-            var bombs = this.get('bombs');
+            var size = this.get('size'),
+                bombs = this.get('bombs');
 
             for (var i = 0; i < bombs;) {
                 var randomX = Math.floor(Math.random() * (size));
@@ -56,12 +56,7 @@ define(['backbone', '../model/field', '../collection/field'], function (Backbone
                 field.set('isBomb', true);
                 i++;
 
-                _.forEach(field.getPossibleNeighbours(), function(possibleNeighbour) {
-                    if (!this.fieldsArray[possibleNeighbour.x] || !this.fieldsArray[possibleNeighbour.x][possibleNeighbour.y]) {
-                        return;
-                    }
-                    var neighbour = this.fieldsArray[possibleNeighbour.x][possibleNeighbour.y];
-
+                _.forEach(this.getNeighbours(field.get('x'), field.get('y')), function(neighbour) {
                     neighbour.set('bombsNear', neighbour.get('bombsNear') + 1)
                 }, this);
             }
@@ -69,7 +64,26 @@ define(['backbone', '../model/field', '../collection/field'], function (Backbone
 
         getField: function(x, y)
         {
+            if (!this.fieldsArray[x]) {
+                return;
+            }
+
             return this.fieldsArray[x][y];
+        },
+
+        getNeighbours: function(x, y)
+        {
+            var neighbours = [],
+                neighbour = null,
+                possibleNeighbours = this.getField(x, y).getPossibleNeighbours();
+
+            _.forEach(possibleNeighbours, function(possibleNeighbour) {
+                if (neighbour = this.getField(possibleNeighbour.x, possibleNeighbour.y)) {
+                    neighbours.push(neighbour);
+                }
+            }, this);
+
+            return neighbours;
         }
     })
 });
