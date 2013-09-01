@@ -4,28 +4,36 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
         className: 'pull-left',
 
         events: {
-            'click .btn': 'triggerClick'
+            'contextmenu .btn': 'triggerRightClick',
+            'mousedown .btn': 'triggerDownClick'
         },
 
-        serializeData: function() {
-            return {
-                text: this.model.get('x')+''+this.model.get('y')
-            }
-        },
-
-        triggerClick: function(e) {
+        triggerRightClick: function(e) {
             e.preventDefault();
-            this.model.set('status', 'clicked');
+        },
+
+        triggerDownClick: function(e) {
+            e.preventDefault();
+            switch (event.which) {
+                case 1:
+                    this.model.display();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    this.model.flag();
+                    break;
+                default:
+                    alert('You have a strange mouse');
+            }
             this.model.trigger('reset');
         },
 
         serializeData: function() {
+            var displayStatus = this.model.getDisplayStatus();
+
             return {
-                displayText : this.model.get('status') ?
-                    this.model.get('isBomb') ?
-                        'B' :
-                        this.model.get('bombsNear'):
-                    '&nbsp;&nbsp;'
+                displayText : displayStatus == '' ? '&nbsp;&nbsp;' : displayStatus
             }
         }
     })
