@@ -35,6 +35,13 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
             return {
                 displayText : displayStatus == '' ? '&nbsp;&nbsp;' : displayStatus
             }
+        },
+
+        onRender: function()
+        {
+            if (this.model.get('isDisplayed')) {
+                this.$('.btn').addClass('active')
+            }
         }
     })
 });
