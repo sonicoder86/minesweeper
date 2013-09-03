@@ -32,7 +32,7 @@ define(['minesweeper/model/maze'], function(MazeModel) {
         it('should return existing neighbours of field', function() {
             maze = new MazeModel({size: 3, bombs: 1});
 
-            var neighbours = maze.getNeighbours(0, 0);
+            var neighbours = maze.getNeighbours(maze.getField(0, 0));
 
             expect(neighbours.length).toEqual(3);
 
@@ -40,5 +40,15 @@ define(['minesweeper/model/maze'], function(MazeModel) {
             expect(neighbours).toContain(maze.getField(1, 0));
             expect(neighbours).toContain(maze.getField(1, 1));
         });
+
+        it('should reveal neighbour fields recursively when displayed field has no bombs near', function() {
+            spyOn(Math, 'random').andReturn(0);
+
+            maze = new MazeModel({size: 3, bombs: 1});
+
+            maze.display(maze.getField(2, 2));
+
+            expect(maze.getFields().where({isDisplayed: true}).length).toEqual(8);
+        })
     });
 });

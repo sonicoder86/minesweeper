@@ -6,8 +6,8 @@ define(['marionette', '../collection/field', '../model/field', '../model/maze'],
                 return MazeGenerator.maze.getFields();
             });
 
-            Minesweeper.reqres.setHandler("maze:get", function(x, y) {
-                return MazeGenerator.maze.getField(x, y);
+            Minesweeper.reqres.setHandler("maze:display", function(field) {
+                return MazeGenerator.maze.display(field);
             });
         });
     };

@@ -56,7 +56,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore'], func
                 field.set('isBomb', true);
                 i++;
 
-                _.forEach(this.getNeighbours(field.get('x'), field.get('y')), function(neighbour) {
+                this.getNeighbours(field).forEach(function(neighbour) {
                     neighbour.set('bombsNear', neighbour.get('bombsNear') + 1)
                 }, this);
             }
@@ -71,19 +71,35 @@ define(['backbone', '../model/field', '../collection/field', 'underscore'], func
             return this.fieldsArray[x][y];
         },
 
-        getNeighbours: function(x, y)
+        getNeighbours: function(field)
         {
-            var neighbours = [],
+            var neighbours = new FieldCollection(),
                 neighbour = null,
-                possibleNeighbours = this.getField(x, y).getPossibleNeighbours();
+                possibleNeighbours = field.getPossibleNeighbours();
 
             _.forEach(possibleNeighbours, function(possibleNeighbour) {
                 if (neighbour = this.getField(possibleNeighbour.x, possibleNeighbour.y)) {
-                    neighbours.push(neighbour);
+                    neighbours.add(neighbour);
                 }
             }, this);
 
             return neighbours;
+        },
+
+        display: function(field)
+        {
+            if (field.get('isDisplayed')) {
+                return;
+            }
+
+            field.set('isDisplayed', true);
+            if (field.get('bombsNear') > 0) {
+                return;
+            }
+
+            this.getNeighbours(field).forEach(function(neighbourField) {
+                this.display(neighbourField)
+            }, this)
         }
     })
 });

@@ -4,6 +4,9 @@ define(['marionette', '../view/maze'], function (Marionette, MazeView) {
             var fields = application.request('maze:generateFields', 9, 15);
 
             var maze = new MazeView({collection: fields});
+            maze.on('itemview:display', function(view) {
+                application.request('maze:display', view.model);
+            });
 
             Minesweeper.mainRegion.show(maze);
         });

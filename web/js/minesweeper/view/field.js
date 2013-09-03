@@ -8,15 +8,21 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
             'mousedown .btn': 'triggerDownClick'
         },
 
-        disableContextMenu: function(e) {
+        initialize: function()
+        {
+            this.listenTo(this.model, 'change:isDisplayed', this.render);
+        },
+
+        disableContextMenu: function(e)
+        {
             e.preventDefault();
         },
 
-        triggerDownClick: function(e) {
-            e.preventDefault();
-            switch (event.which) {
+        triggerDownClick: function(e)
+        {
+            switch (e.which) {
                 case 1:
-                    this.model.display();
+                    this.trigger('display');
                     break;
                 case 2:
                     break;
@@ -26,10 +32,10 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
                 default:
                     alert('You have a strange mouse');
             }
-            this.model.trigger('reset');
         },
 
-        serializeData: function() {
+        serializeData: function()
+        {
             var displayStatus = this.model.getDisplayStatus();
 
             return {
