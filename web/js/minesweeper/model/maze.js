@@ -1,7 +1,7 @@
 define(['backbone', '../model/field', '../collection/field', 'underscore'], function (Backbone, FieldModel, FieldCollection, _) {
     return Backbone.Model.extend({
         fieldsCollection: null,
-        fieldsArray: [],
+        fieldsArray: null,
 
         defaults: {
             size: 3,
@@ -11,6 +11,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore'], func
         initialize: function()
         {
             this.fieldsCollection = new FieldCollection();
+            this.fieldsArray = [];
 
             this.generateFields();
             this.placeBombs();
@@ -100,6 +101,11 @@ define(['backbone', '../model/field', '../collection/field', 'underscore'], func
             this.getNeighbours(field).forEach(function(neighbourField) {
                 this.display(neighbourField)
             }, this)
+        },
+
+        getStatus: function()
+        {
+
         }
     })
 });
