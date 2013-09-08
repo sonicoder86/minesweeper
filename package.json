@@ -11,10 +11,10 @@
         "minesweeper",
         "backbone"
     ],
-    "devDependencies": {
+    "dependencies": {
         "karma": "~0.8"
     },
     "scripts": {
-        "test": "./node_modules/.bin/karma start karmaconfig.js --single-run --browsers PhantomJS"
+        "test": "karma start ./karmaconfig.js --single-run --browsers PhantomJS"
     }
 }

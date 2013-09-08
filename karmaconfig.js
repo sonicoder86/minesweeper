@@ -1,6 +1,3 @@
-// Karma configuration
-// Generated on Sat Aug 24 2013 11:33:27 GMT+0200 (CEST)
-
 module.exports = function(config) {
   config.set({
 
@@ -59,7 +56,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // If browser does not capture in given timeout [ms], kill it
