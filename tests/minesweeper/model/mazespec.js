@@ -1,4 +1,5 @@
-define(['minesweeper/model/maze'], function(MazeModel) {
+var testDefine = typeof window === 'undefined' ? requirejs : define;
+testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeModel, Math) {
     var maze;
 
     describe('Maze model', function() {

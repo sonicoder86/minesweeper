@@ -1,4 +1,5 @@
-define(['minesweeper/model/field', 'underscore'], function(FieldModel, _) {
+var testDefine = typeof window === 'undefined' ? requirejs : define;
+testDefine(['minesweeper/model/field', 'underscore'], function(FieldModel, _) {
     var field;
 
     describe('Field model', function() {
