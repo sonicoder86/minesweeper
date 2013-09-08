@@ -12,9 +12,9 @@
         "backbone"
     ],
     "dependencies": {
-        "karma": "~0.8"
+        "karma": "~0.10"
     },
     "scripts": {
-        "test": "karma start ./karmaconfig.js --single-run --browsers PhantomJS"
+        "test": "./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS"
     }
 }
