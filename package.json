@@ -12,9 +12,11 @@
         "backbone"
     ],
     "dependencies": {
-        "karma": "~0.10"
+        "karma": "~0.10",
+        "jasmine-node": "~1.11"
     },
     "scripts": {
-        "test": "./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS"
+        "test": "./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS",
+        "testnode": "./node_modules/.bin/jasmine-node ./tests/minesweeper/model --requireJsSetup tests/lib/requireconfig/node.js --matchall --captureExceptions"
     }
 }
