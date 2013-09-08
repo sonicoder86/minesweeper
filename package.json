@@ -13,7 +13,10 @@
     ],
     "dependencies": {
         "karma": "~0.10",
-        "jasmine-node": "~1.11"
+        "jasmine-node": "~1.11",
+        "jquery": "~1.8",
+        "underscore": "~1.5",
+        "backbone": "~1.0"
     },
     "scripts": {
         "test": "./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS",

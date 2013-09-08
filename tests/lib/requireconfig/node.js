@@ -21,4 +21,16 @@ requirejs.config({
     urlArgs: null
 });
 
+requirejs.define('jquery', function() {
+    return require('jquery');
+});
+
+requirejs.define('underscore', function() {
+    return require('underscore');
+});
+
+requirejs.define('backbone', function() {
+    return require('backbone');
+});
+
 define = requirejs.define;
