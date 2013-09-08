@@ -2,7 +2,8 @@ define(['marionette', './module/mazegenerator', './module/game'], function (Mari
     var application = new Marionette.Application();
 
     application.addRegions({
-        mainRegion: '#main-region'
+        mainRegion: '#main-region',
+        statusRegion: '#status-region'
     });
 
     mazeGeneratorModule(application);

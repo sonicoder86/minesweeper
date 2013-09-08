@@ -105,7 +105,16 @@ define(['backbone', '../model/field', '../collection/field', 'underscore'], func
 
         getStatus: function()
         {
+            if (this.fieldsCollection.where({isBomb: true, isFlagged: false, isDisplayed: true}).length > 0) {
+                return 'defeat';
+            }
 
+            if (this.fieldsCollection.where({isBomb: true, isFlagged: true}).length == this.get('bombs')
+                && this.fieldsCollection.where({isDisplayed: true}).length == this.get('size') * this.get('size')) {
+                return 'victory';
+            }
+
+            return 'in_progress';
         }
     })
 });

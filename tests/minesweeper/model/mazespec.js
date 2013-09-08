@@ -60,6 +60,14 @@ define(['minesweeper/model/maze'], function(MazeModel) {
                 expect(neighbours).toContain(maze.getField(1, 0));
                 expect(neighbours).toContain(maze.getField(1, 1));
             });
+
+            it('should not return non existing neighbours', function() {
+                maze = new MazeModel({size: 3, bombs: 1});
+
+                var neighbours = maze.getNeighbours(maze.getField(0, 0));
+
+                expect(neighbours).not.toContain(maze.getField(-1, -1));
+            });
         });
 
         describe('display', function() {
@@ -71,7 +79,47 @@ define(['minesweeper/model/maze'], function(MazeModel) {
                 maze.display(maze.getField(2, 2));
 
                 expect(maze.getFields().where({isDisplayed: true}).length).toEqual(8);
-            })
+            });
+
+            it('should only return field itself when bomb(s) are near', function() {
+                spyOn(Math, 'random').andReturn(0);
+
+                maze = new MazeModel({size: 3, bombs: 1});
+
+                maze.display(maze.getField(0, 1));
+
+                expect(maze.getFields().where({isDisplayed: true}).length).toEqual(1);
+            });
+        });
+
+        describe('getStatus', function() {
+            it('should mark game as victory when all bombs are flagged and all fields are displayed', function() {
+                maze = new MazeModel({size: 3, bombs: 1});
+
+                maze.getFields().forEach(function(field) {
+                    field.get('isBomb') ? field.flag() : field.display();
+                });
+
+                expect(maze.getStatus()).toEqual('victory');
+            });
+
+            it('should mark game as defeat when a bomb is displayed and not flagged', function() {
+                spyOn(Math, 'random').andReturn(0);
+                maze = new MazeModel({size: 3, bombs: 1});
+
+                maze.getField(0, 0).display();
+
+                expect(maze.getStatus()).toEqual('defeat');
+            });
+
+            it('should mark game as in progress when not all the fields are displayed', function() {
+                spyOn(Math, 'random').andReturn(0);
+                maze = new MazeModel({size: 3, bombs: 1});
+
+                maze.getField(1, 1).display();
+
+                expect(maze.getStatus()).toEqual('in_progress');
+            });
         });
 
     });
