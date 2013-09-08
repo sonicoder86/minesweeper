@@ -1,7 +1,7 @@
 {
     "name": "Minesweeper",
     "version": "0.1.0",
-    "author": "Blacksonic <support@nodejitsu.com>",
+    "author": "Blacksonic <soos.gabor86@gmail.com>",
     "description": "Minesweeper game built with Backbone Marionette, tested with Mocha on both client and server side",
     "repository": {
         "type": "git",
@@ -11,13 +11,10 @@
         "minesweeper",
         "backbone"
     ],
-    "dependencies" : {
-        "jasmine-node"   :  "*",
-        "requirejs"   :  "*",
-        "karma"   :  "*"
+    "devDependencies": {
+        "karma": "~0.8"
     },
-    "license": "MIT",
-    "engines": {
-        "node": ">=0.6"
+    "scripts": {
+        "test": "./node_modules/.bin/karma start karmaconfig.js --single-run --browsers PhantomJS"
     }
 }
