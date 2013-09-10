@@ -10,6 +10,10 @@ define(['marionette', '../collection/field', '../model/field', '../model/maze'],
                 return MazeGenerator.maze.display(field);
             });
 
+            Minesweeper.reqres.setHandler("maze:flag", function(field) {
+                return MazeGenerator.maze.flag(field);
+            });
+
             Minesweeper.reqres.setHandler("maze:status", function() {
                 return MazeGenerator.maze.getStatus();
             });

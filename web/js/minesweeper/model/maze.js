@@ -103,6 +103,11 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
             }, this)
         },
 
+        flag: function(field)
+        {
+            field.flag();
+        },
+
         getStatus: function()
         {
             if (this.fieldsCollection.where({isBomb: true, isFlagged: false, isDisplayed: true}).length > 0) {

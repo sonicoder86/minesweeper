@@ -7,6 +7,9 @@ define(['marionette', '../view/maze', '../view/status'], function (Marionette, M
             maze.on('itemview:display', function(view) {
                 application.request('maze:display', view.model);
             });
+            maze.on('itemview:flag', function(view) {
+                application.request('maze:flag', view.model);
+            });
 
             var status = new StatusView();
             status.status = Minesweeper.request('maze:status');

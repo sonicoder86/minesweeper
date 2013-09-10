@@ -24,13 +24,11 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
                 case 1:
                     this.trigger('display');
                     break;
-                case 2:
-                    break;
                 case 3:
-                    this.model.flag();
+                    this.trigger('flag');
                     break;
                 default:
-                    alert('You have a strange mouse');
+                    break;
             }
         },
 

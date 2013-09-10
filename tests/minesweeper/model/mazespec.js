@@ -82,7 +82,7 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                 expect(maze.getFields().where({isDisplayed: true}).length).toEqual(8);
             });
 
-            it('should only return field itself when bomb(s) are near', function() {
+            it('should only reveal field itself when bomb(s) are near', function() {
                 spyOn(Math, 'random').andReturn(0);
 
                 maze = new MazeModel({size: 3, bombs: 1});
