@@ -13,7 +13,8 @@ module.exports = function(config) {
         'web/js/minesweeper/requireconfig.js',
         {pattern: 'web/js/**/*', included: false},
         {pattern: 'tests/minesweeper/**/*.js', included: false},
-        'tests/lib/requireconfig/karma.js'
+        'tests/lib/requireconfig/karma.js',
+        'tests/helper/jquery.js'
     ],
 
     preprocessors: {
