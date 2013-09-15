@@ -8,7 +8,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
             bombs: 1
         },
 
-        initialize: function()
+        generate: function()
         {
             this.fieldsCollection = new FieldCollection();
             this.fieldsArray = [];
@@ -50,9 +50,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
                 var randomY = Math.floor(Math.random() * (size));
 
                 var field = this.fieldsArray[randomX][randomY];
-                if (field.get('isBomb')) {
-                    continue;
-                }
+                if (field.get('isBomb'))  continue;
 
                 field.set('isBomb', true);
                 i++;
@@ -65,9 +63,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         getField: function(x, y)
         {
-            if (!this.fieldsArray[x]) {
-                return;
-            }
+            if (!this.fieldsArray[x]) return;
 
             return this.fieldsArray[x][y];
         },
@@ -89,14 +85,12 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         display: function(field)
         {
-            if (field.get('isDisplayed')) {
-                return;
-            }
+            if (this.getStatus() == 'defeat') return;
 
-            field.set('isDisplayed', true);
-            if (field.get('bombsNear') > 0) {
-                return;
-            }
+            if (field.get('isDisplayed')) return;
+
+            field.display();
+            if (field.get('bombsNear') > 0) return;
 
             this.getNeighbours(field).forEach(function(neighbourField) {
                 this.display(neighbourField)
@@ -105,6 +99,8 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         flag: function(field)
         {
+            if (this.getStatus() == 'defeat') return;
+
             field.flag();
         },
 
