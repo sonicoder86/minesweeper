@@ -8,9 +8,14 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
             bombs: 1
         },
 
-        generate: function()
+        initialize: function()
         {
             this.fieldsCollection = new FieldCollection();
+            this.fieldsArray = [];
+        },
+
+        generate: function()
+        {
             this.fieldsArray = [];
 
             this.generateFields();
@@ -26,6 +31,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
         {
             var size = this.get('size');
 
+            var fields = [];
             for (var i = 0; i < size; i++) {
                 for (var j = 0; j < size; j++) {
                     var field = new FieldModel({x: i, y: j});
@@ -33,11 +39,13 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
                     if (!this.fieldsArray[i]) {
                         this.fieldsArray[i] = [];
                     }
-                    this.fieldsArray[i][j] = field;
 
-                    this.fieldsCollection.add(field);
+                    this.fieldsArray[i][j] = field;
+                    fields.push(field);
                 }
             }
+
+            this.fieldsCollection.reset(fields);
         },
 
         placeBombs: function()
