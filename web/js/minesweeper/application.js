@@ -6,8 +6,10 @@ define(['marionette', './module/mazegenerator', './module/game'], function (Mari
         statusRegion: '#status-region'
     });
 
-    mazeGeneratorModule(application);
-    gameModule(application);
+    application.setup = function() {
+        mazeGeneratorModule(application);
+        gameModule(application);
+    };
 
     return application;
 });
