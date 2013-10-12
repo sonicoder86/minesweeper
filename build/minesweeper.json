@@ -1,0 +1,11 @@
+{
+    "baseUrl": "../web/js",
+
+    "optimize": "uglify2",
+    "generateSourceMaps": true,
+    "preserveLicenseComments": false,
+
+    "name": "minesweeper/application",
+    "mainConfigFile": "../web/js/minesweeper/requireconfig.js",
+    "out": "../web/js/minesweeper/application.min.js"
+}
