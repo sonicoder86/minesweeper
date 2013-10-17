@@ -5,7 +5,8 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         defaults: {
             size: 3,
-            bombs: 1
+            bombs: 1,
+            status: 'in_progress'
         },
 
         initialize: function()
@@ -93,7 +94,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         display: function(field)
         {
-            if (this.getStatus() == 'defeat') return;
+            if (this.calculateStatus() == 'defeat') return;
 
             if (field.get('isDisplayed')) return;
 
@@ -107,23 +108,25 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         flag: function(field)
         {
-            if (this.getStatus() == 'defeat') return;
+            if (this.calculateStatus() == 'defeat') return;
 
             field.flag();
         },
 
-        getStatus: function()
+        calculateStatus: function()
         {
+            var status = 'in_progress';
             if (this.fieldsCollection.where({isBomb: true, isFlagged: false, isDisplayed: true}).length > 0) {
-                return 'defeat';
+                status = 'defeat';
             }
 
             if (this.fieldsCollection.where({isBomb: true, isFlagged: true}).length == this.get('bombs')
                 && this.fieldsCollection.where({isDisplayed: true}).length == this.get('size') * this.get('size')) {
-                return 'victory';
+                status = 'victory';
             }
 
-            return 'in_progress';
+            this.set('status', status);
+            return status;
         }
     })
 });

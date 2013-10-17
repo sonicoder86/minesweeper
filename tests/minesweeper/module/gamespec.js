@@ -1,32 +1,23 @@
-define(['minesweeper/application', 'minesweeper/module/game', 'minesweeper/collection/field'],
-    function(application, GameModuleSetup, FieldCollection)
+define(['minesweeper/application', 'minesweeper/module/game', 'minesweeper/collection/field', 'minesweeper/model/maze'],
+    function(application, GameModuleSetup, FieldCollection, MazeModel)
 {
-    var fields, status = 'in_progress';
+    var fields, maze, status = 'in_progress';
 
     beforeEach(function() {
         fields = new FieldCollection();
-        application.reqres.setHandler("maze:generateFields", function(size, bombs) {
-            return fields;
-        });
-        application.reqres.setHandler("maze:status", function(size, bombs) {
-            return status;
+        maze = new MazeModel({size: 3, bombs: 1});
+        maze.generate();
+
+        application.reqres.setHandler("maze:generate", function(size, bombs) {
+            return maze;
         });
     });
 
     afterEach(function() {
-        application.reqres.removeHandler("maze:generateFields");
+        application.reqres.removeHandler("maze:generate");
     });
 
     describe('GameModule', function() {
-        it('should render requested fields', function() {
-            spyOn(application.mainRegion, 'show');
 
-            GameModuleSetup(application);
-
-            expect(application.mainRegion.show).toHaveBeenCalled();
-
-            var showCallParameters = application.mainRegion.show.mostRecentCall.args;
-            expect(showCallParameters[0].collection).toEqual(fields);
-        });
     });
 });

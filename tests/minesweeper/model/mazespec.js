@@ -22,6 +22,7 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                 maze.generate();
 
                 expect(maze.getFields().length).toEqual(9);
+                expect(maze.get('status')).toEqual('in_progress');
             });
 
             it('should create 2 fields in a row when size is 2', function() {
@@ -126,14 +127,15 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
             });
         });
 
-        describe('getStatus', function() {
+        describe('calculateStatus', function() {
             it('should mark game as victory when all bombs are flagged and all fields are displayed', function() {
                 maze.generate();
                 maze.getFields().forEach(function(field) {
                     field.get('isBomb') ? field.flag() : field.display();
                 });
 
-                expect(maze.getStatus()).toEqual('victory');
+                expect(maze.calculateStatus()).toEqual('victory');
+                expect(maze.get('status')).toEqual('victory');
             });
 
             it('should mark game as defeat when a bomb is displayed and not flagged', function() {
@@ -142,7 +144,8 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
 
                 maze.getField(0, 0).display();
 
-                expect(maze.getStatus()).toEqual('defeat');
+                expect(maze.calculateStatus()).toEqual('defeat');
+                expect(maze.get('status')).toEqual('defeat');
             });
 
             it('should mark game as in progress when not all the fields are displayed', function() {
@@ -151,7 +154,8 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
 
                 maze.getField(1, 1).display();
 
-                expect(maze.getStatus()).toEqual('in_progress');
+                expect(maze.calculateStatus()).toEqual('in_progress');
+                expect(maze.get('status')).toEqual('in_progress');
             });
         });
 
