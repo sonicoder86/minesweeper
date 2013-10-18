@@ -57,18 +57,18 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
                 bombs = this.get('bombs');
 
             for (var i = 0; i < bombs;) {
-                var randomX = Math.floor(Math.random() * (size));
-                var randomY = Math.floor(Math.random() * (size));
+                var randomX = Math.floor(Math.random() * (size)),
+                    randomY = Math.floor(Math.random() * (size)),
+                    field = this.getField(randomX, randomY);
 
-                var field = this.fieldsArray[randomX][randomY];
-                if (field.get('isBomb'))  continue;
+                if (field.get('isBomb')) continue;
 
                 field.set('isBomb', true);
                 i++;
 
                 this.getNeighbours(field).forEach(function(neighbour) {
                     neighbour.set('bombsNear', neighbour.get('bombsNear') + 1)
-                }, this);
+                });
             }
         },
 
@@ -96,7 +96,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         display: function(field)
         {
-            if (this.calculateStatus() == 'defeat') return;
+            if (this.get('status') == 'defeat') return;
 
             if (field.get('isDisplayed')) return;
 
@@ -110,7 +110,9 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         flag: function(field)
         {
-            if (this.calculateStatus() == 'defeat') return;
+            if (this.get('status') == 'defeat') return;
+
+            if (field.get('isDisplayed')) return;
 
             field.flag();
         },
@@ -118,17 +120,31 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
         calculateStatus: function()
         {
             var status = 'in_progress';
-            if (this.fieldsCollection.where({isBomb: true, isFlagged: false, isDisplayed: true}).length > 0) {
+            if (this.anyBombDisplayed()) {
                 status = 'defeat';
             }
 
-            if (this.fieldsCollection.where({isBomb: true, isFlagged: true}).length == this.get('bombs')
-                && this.fieldsCollection.where({isDisplayed: true}).length == this.get('size') * this.get('size')) {
+            if (this.allBombsFlagged() && this.allFieldsDisplayed()) {
                 status = 'victory';
             }
 
             this.set('status', status);
             return status;
+        },
+
+        anyBombDisplayed: function()
+        {
+            return this.fieldsCollection.where({isBomb: true, isFlagged: false, isDisplayed: true}).length > 0;
+        },
+
+        allBombsFlagged: function()
+        {
+            return this.fieldsCollection.where({isBomb: true, isFlagged: true}).length == this.get('bombs');
+        },
+
+        allFieldsDisplayed: function()
+        {
+            return this.fieldsCollection.where({isDisplayed: true}).length == this.get('size') * this.get('size');
         }
     })
 });
