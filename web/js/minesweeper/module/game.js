@@ -11,16 +11,11 @@ define(['marionette', '../view/maze', '../view/status'], function (Marionette, M
                 maze.flag(view.model);
             });
 
-            var status = new StatusView();
-            status.status = maze.calculateStatus();
-            maze.getFields().on('change', function() {
-                status.status = maze.calculateStatus();
-                status.render();
-            });
+            Game.statusView = new StatusView({model: maze});
 
             Game.on('start', function() {
                 Minesweeper.mainRegion.show(Game.mazeView);
-                Minesweeper.statusRegion.show(status);
+                Minesweeper.statusRegion.show(Game.statusView);
             });
         });
     };

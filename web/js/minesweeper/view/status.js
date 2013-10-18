@@ -3,11 +3,13 @@ define(['marionette', 'underscore', 'text!../template/status.html'], function (M
         template: _.template(html),
         className: 'btn btn-primary',
 
-        serializeData: function()
+        ui: {
+            statusContainer: '#statusContainer'
+        },
+
+        initialize: function()
         {
-            return {
-                status: this.status
-            }
+            this.listenTo(this.model, 'change:status', this.render);
         }
     })
 });

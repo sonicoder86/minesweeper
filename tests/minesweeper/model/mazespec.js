@@ -17,6 +17,10 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
             maze = new MazeModel({size: 3, bombs: 1});
         });
 
+        afterEach(function() {
+            maze.stopListening();
+        });
+
         describe('generateFields', function() {
             it('should create 9 fields when size is 3', function() {
                 maze.generate();
@@ -134,27 +138,20 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                     field.get('isBomb') ? field.flag() : field.display();
                 });
 
-                expect(maze.calculateStatus()).toEqual('victory');
                 expect(maze.get('status')).toEqual('victory');
             });
 
             it('should mark game as defeat when a bomb is displayed and not flagged', function() {
-                spyOn(Math, 'random').andReturn(0);
                 maze.generate();
+                markGameAsDefeat();
 
-                maze.getField(0, 0).display();
-
-                expect(maze.calculateStatus()).toEqual('defeat');
                 expect(maze.get('status')).toEqual('defeat');
             });
 
             it('should mark game as in progress when not all the fields are displayed', function() {
-                spyOn(Math, 'random').andReturn(0);
                 maze.generate();
+                getFieldWithoutBomb().display();
 
-                maze.getField(1, 1).display();
-
-                expect(maze.calculateStatus()).toEqual('in_progress');
                 expect(maze.get('status')).toEqual('in_progress');
             });
         });

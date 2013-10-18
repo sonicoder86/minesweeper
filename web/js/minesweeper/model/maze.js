@@ -13,6 +13,8 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
         {
             this.fieldsCollection = new FieldCollection();
             this.fieldsArray = [];
+
+            this.listenTo(this.fieldsCollection, 'change', this.calculateStatus);
         },
 
         generate: function()
