@@ -112,8 +112,6 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
         {
             if (this.get('status') == 'defeat') return;
 
-            if (field.get('isDisplayed')) return;
-
             field.flag();
         },
 

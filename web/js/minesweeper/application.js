@@ -3,9 +3,8 @@ function (Marionette, mazeGeneratorModule, gameModule, menuModule) {
     var application = new Marionette.Application();
 
     application.addRegions({
-        mainRegion: '#main-region',
-        statusRegion: '#status-region',
-        menuRegion: '#menu-region'
+        menuRegion: '#menu-region',
+        gameRegion: '#game-region'
     });
 
     application.setup = function() {

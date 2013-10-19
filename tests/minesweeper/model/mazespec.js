@@ -179,18 +179,6 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
 
                 expect(field.flag).not.toHaveBeenCalled();
             });
-
-            it('should not flag field when field is displayed', function() {
-                maze.generate();
-
-                var field = getFieldWithoutBomb();
-                spyOn(field, 'flag');
-                field.display();
-
-                maze.flag(field);
-
-                expect(field.flag).not.toHaveBeenCalled();
-            });
         });
     });
 });
