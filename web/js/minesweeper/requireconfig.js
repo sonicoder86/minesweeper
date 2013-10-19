@@ -6,20 +6,24 @@ requirejs.config({
         underscore: 'lib/underscore-1.5.1',
         backbone: 'lib/backbone/backbone-1.0.0',
         marionette: 'lib/backbone/backbone.marionette-1.0.4',
-        text: 'lib/require/require.text-2.0.10'
+        text: 'lib/require/require.text-2.0.10',
+        bootstrap: 'lib/bootstrap/bootstrap-3.0.0'
     },
 
     shim: {
-        'underscore': {
+        underscore: {
             exports: '_'
         },
-        'backbone': {
+        backbone: {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
-        'marionette': {
+        marionette: {
             deps: ['backbone'],
             exports: 'Backbone.Marionette'
+        },
+        bootstrap: {
+            deps: ['jquery']
         }
     }
 });

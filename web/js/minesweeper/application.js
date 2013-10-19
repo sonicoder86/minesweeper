@@ -1,14 +1,17 @@
-define(['marionette', './module/mazegenerator', './module/game'], function (Marionette, mazeGeneratorModule, gameModule) {
+define(['marionette', './module/mazegenerator', './module/game', './module/menu', 'bootstrap'],
+function (Marionette, mazeGeneratorModule, gameModule, menuModule) {
     var application = new Marionette.Application();
 
     application.addRegions({
         mainRegion: '#main-region',
-        statusRegion: '#status-region'
+        statusRegion: '#status-region',
+        menuRegion: '#menu-region'
     });
 
     application.setup = function() {
         mazeGeneratorModule(application);
         gameModule(application);
+        menuModule(application);
     };
 
     return application;

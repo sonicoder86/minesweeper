@@ -1,4 +1,4 @@
-define(['marionette', '../collection/field', '../model/field', '../model/maze'], function (Marionette, FieldCollection, FieldModel, MazeModel) {
+define(['../collection/field', '../model/field', '../model/maze'], function (FieldCollection, FieldModel, MazeModel) {
     return function(application) {
         application.module('MazeGenerator', function(MazeGenerator, Minesweeper, Backbone, Marionette, $, _) {
             MazeGenerator.maze = new MazeModel();
