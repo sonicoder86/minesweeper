@@ -10,7 +10,7 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
 
         var getFieldWithoutBomb = function()
         {
-            return maze.getFields().findWhere({isBomb: false});
+            return maze.getFields().findWhere({isBomb: false, isDisplayed: false});
         };
 
         beforeEach(function() {
@@ -178,6 +178,29 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                 maze.flag(field);
 
                 expect(field.flag).not.toHaveBeenCalled();
+            });
+        });
+
+        describe('getCompletePercent', function() {
+            it('should return percent of displayed fields', function() {
+                maze.generate();
+
+                getFieldWithoutBomb().display();
+                getFieldWithoutBomb().display();
+                getFieldWithoutBomb().display();
+
+                expect(maze.getCompletePercent()).toEqual(33);
+            });
+        });
+
+        describe('getFlagsLeft', function() {
+            it('should return difference between fields with bomb and flagged fields', function() {
+                maze.generate();
+
+                getFieldWithoutBomb().display();
+                getFieldWithoutBomb().flag();
+
+                expect(maze.getFlagsLeft()).toEqual(0);
             });
         });
     });

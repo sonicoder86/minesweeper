@@ -143,6 +143,19 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
         allFieldsDisplayed: function()
         {
             return this.fieldsCollection.where({isDisplayed: true}).length == this.get('size') * this.get('size');
+        },
+
+        getCompletePercent: function()
+        {
+            var size = this.get('size');
+
+            return Math.round(this.fieldsCollection.where({isDisplayed: true}).length
+                / (size * size) * 100);
+        },
+
+        getFlagsLeft: function ()
+        {
+            return this.get('bombs') - this.fieldsCollection.where({isFlagged: true}).length;
         }
     })
 });

@@ -6,9 +6,13 @@ define(['../collection/gametype', '../view/menu'], function (GameTypeCollection,
 
     return function(application) {
         application.module('Menu', function(Menu, Minesweeper, Backbone, Marionette, $, _) {
-            var menuView = new MenuView({collection: gameTypes});
+            Menu.menuView = new MenuView({collection: gameTypes});
 
-            Minesweeper.menuRegion.show(menuView);
+            Menu.menuView.on('new_game', function(newGameType) {
+                Minesweeper.request('maze:generate', newGameType.get('size'), newGameType.get('bombs'));
+            });
+
+            Minesweeper.menuRegion.show(Menu.menuView);
         });
     };
 });
