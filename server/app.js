@@ -2,11 +2,13 @@ var express = require('express')
   , index = require('./routes/index')
   , http = require('http')
   , path = require('path')
-  , socketIO = require('socket.io');
+  , socketIO = require('socket.io')
+  , requirejs = require('./requiresetup').requirejs;
 
 var app = express(),
     server = http.createServer(app),
     io = socketIO.listen(server);
+io.set('log level', 1);
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -31,6 +33,9 @@ server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
+var mazeModel = requirejs('minesweeper/model/maze');
 io.sockets.on('connection', function(socket) {
-
+    var maze = new mazeModel({size: 9, bombs: 10});
+    maze.generate();
+    socket.emit('game', maze.toJSON());
 });

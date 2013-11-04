@@ -40,6 +40,12 @@
         application.setup();
         application.start();
     });
+
+    var socket = io.connect('http://localhost:3000');
+
+    socket.on('game', function(game) {
+       console.log(game);
+    });
 </script>
 </body>
 </html>
