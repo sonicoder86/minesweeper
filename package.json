@@ -21,9 +21,10 @@
         "express": "~3.0",
         "ejs": "*",
         "socket.io": "~0.9",
-        "mocha": "~1.14"
+        "mocha": "~1.14",
+        "chai": "~1.8"
     },
     "scripts": {
-        "test": "./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS && ./node_modules/.bin/jasmine-node ./tests/minesweeper/model --requireJsSetup tests/lib/requireconfig/node.js --matchall --captureExceptions"
+        "test": "./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS && ./node_modules/.bin/jasmine-node ./tests/minesweeper/model --requireJsSetup tests/lib/requireconfig/node.js --matchall --captureExceptions && ./node_modules/.bin/mocha ./tests/server"
     }
 }
