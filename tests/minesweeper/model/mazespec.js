@@ -203,5 +203,16 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                 expect(maze.getFlagsLeft()).toEqual(0);
             });
         });
+
+        describe('toJSON', function() {
+            it('should return fields also in JSON format', function() {
+                maze.generate();
+
+                var json = maze.toJSON();
+
+                expect(json.fields.length).toEqual(9);
+                expect(json.fields.models).toBeUndefined();
+            });
+        });
     });
 });

@@ -1,6 +1,5 @@
 define(['backbone', '../model/field', '../collection/field', 'underscore', '../util/math'], function (Backbone, FieldModel, FieldCollection, _, Math) {
     return Backbone.Model.extend({
-        fieldsCollection: null,
         fieldsArray: null,
 
         defaults: {
@@ -11,10 +10,10 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         initialize: function()
         {
-            this.fieldsCollection = new FieldCollection();
             this.fieldsArray = [];
+            this.set({fields: new FieldCollection()}, {silent: true});
 
-            this.listenTo(this.fieldsCollection, 'change', this.calculateStatus);
+            this.listenTo(this.getFields(), 'change', this.calculateStatus);
         },
 
         generate: function()
@@ -27,7 +26,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         getFields: function()
         {
-            return this.fieldsCollection;
+            return this.get('fields');
         },
 
         generateFields: function()
@@ -48,7 +47,7 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
                 }
             }
 
-            this.fieldsCollection.reset(fields);
+            this.getFields().reset(fields);
         },
 
         placeBombs: function()
@@ -132,30 +131,38 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         anyBombDisplayed: function()
         {
-            return this.fieldsCollection.where({isBomb: true, isFlagged: false, isDisplayed: true}).length > 0;
+            return this.getFields().where({isBomb: true, isFlagged: false, isDisplayed: true}).length > 0;
         },
 
         allBombsFlagged: function()
         {
-            return this.fieldsCollection.where({isBomb: true, isFlagged: true}).length == this.get('bombs');
+            return this.getFields().where({isBomb: true, isFlagged: true}).length == this.get('bombs');
         },
 
         allFieldsDisplayed: function()
         {
-            return this.fieldsCollection.where({isDisplayed: true}).length == this.get('size') * this.get('size');
+            return this.getFields().where({isDisplayed: true}).length == this.get('size') * this.get('size');
         },
 
         getCompletePercent: function()
         {
             var size = this.get('size');
 
-            return Math.round(this.fieldsCollection.where({isDisplayed: true}).length
+            return Math.round(this.getFields().where({isDisplayed: true}).length
                 / (size * size) * 100);
         },
 
         getFlagsLeft: function ()
         {
-            return this.get('bombs') - this.fieldsCollection.where({isFlagged: true}).length;
+            return this.get('bombs') - this.getFields().where({isFlagged: true}).length;
+        },
+
+        toJSON: function()
+        {
+            var json = Backbone.Model.prototype.toJSON.apply(this);
+            json.fields = json.fields.toJSON();
+
+            return json;
         }
     })
 });
