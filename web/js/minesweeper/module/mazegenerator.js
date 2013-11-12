@@ -1,4 +1,4 @@
-define(['../collection/field', '../model/field', '../model/maze'], function (FieldCollection, FieldModel, MazeModel) {
+define(['../collection/field', '../model/field', '../model/maze', 'socketio'], function (FieldCollection, FieldModel, MazeModel, SocketIO) {
     return function(application) {
         application.module('MazeGenerator', function(MazeGenerator, Minesweeper, Backbone, Marionette, $, _) {
             MazeGenerator.maze = new MazeModel();

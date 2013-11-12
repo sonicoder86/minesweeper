@@ -31,7 +31,6 @@
 
 </div><!-- /.container -->
 
-<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="js/lib/require/require-2.1.8.js"></script>
 <script type="text/javascript" src="js/minesweeper/requireconfig.js"></script>
 
@@ -39,12 +38,6 @@
     requirejs(['minesweeper/application'], function(application) {
         application.setup();
         application.start();
-    });
-
-    var socket = io.connect('http://localhost:3000');
-
-    socket.on('game', function(game) {
-       console.log(game);
     });
 </script>
 </body>

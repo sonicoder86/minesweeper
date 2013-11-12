@@ -163,6 +163,12 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
             json.fields = json.fields.toJSON();
 
             return json;
+        },
+
+        fromJSON: function(json)
+        {
+            this.set({size: json.size, bombs: json.bombs});
+            this.getFields().reset(json.fields);
         }
     })
 });

@@ -214,5 +214,28 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                 expect(json.fields.models).toBeUndefined();
             });
         });
+
+        describe('fromJSON', function() {
+            it('should load size from JSON', function() {
+                maze.generate();
+
+                var json = {size: 2, bombs: 1, fields: []};
+
+                maze.fromJSON(json);
+
+                expect(maze.get('size')).toEqual(2);
+                expect(maze.get('bombs')).toEqual(1);
+            });
+
+            it('should load fields from JSON', function() {
+                maze.generate();
+
+                var json = {size: 2, bombs: 1, fields: [{}, {}]};
+
+                maze.fromJSON(json);
+
+                expect(maze.getFields().length).toEqual(2);
+            });
+        });
     });
 });
