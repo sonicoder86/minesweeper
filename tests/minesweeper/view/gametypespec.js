@@ -3,7 +3,7 @@ define(['minesweeper/model/gametype', 'minesweeper/view/gametype'], function(Gam
         var model, view, triggered;
 
         beforeEach(function() {
-            model = new GameTypeModel({size: 5, bombs: 1});
+            model = new GameTypeModel({size: 5, bombs: 1, isRemote: false});
             view = new GameTypeView({model: model});
             triggered = false;
         });

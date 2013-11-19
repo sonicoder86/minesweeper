@@ -3,7 +3,7 @@ define(['minesweeper/view/menu', 'minesweeper/collection/gametype'], function(Me
         var gameTypes, menu, triggered, gameType;
 
         beforeEach(function () {
-            gameTypes = new GameTypeCollection([{bombs: 1, size: 2}]);
+            gameTypes = new GameTypeCollection([{bombs: 1, size: 2, isRemote: false}]);
             menu = new MenuView({collection: gameTypes});
             triggered = false;
             gameType = null;

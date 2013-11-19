@@ -1,0 +1,19 @@
+{
+  "name": "minesweeper",
+  "version": "0.1.0",
+  "homepage": "https://github.com/blacksonic/minesweeper",
+  "authors": [
+    "blacksonic <soos.gabor86@gmail.com>"
+  ],
+  "dependencies": {
+      "jquery": "latest"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -2,13 +2,13 @@ define(['minesweeper/application', 'minesweeper/module/menu', 'minesweeper/model
 function(application, MenuModuleSetup, GameTypeModel)
 {
     describe('MenuModule', function() {
-        MenuModuleSetup(application);
         var gameType = new GameTypeModel({size: 2, bombs: 1}),
             generateArguments = null;
 
         beforeEach(function() {
-            application.reqres.setHandler("maze:generate", function(size, bombs) {
-                generateArguments = [size, bombs];
+            MenuModuleSetup(application);
+            application.reqres.setHandler("maze:generate", function(gameType) {
+                generateArguments = gameType;
             });
         });
 
@@ -19,7 +19,7 @@ function(application, MenuModuleSetup, GameTypeModel)
         it('should generate new maze when new game is selected', function() {
             application.Menu.menuView.trigger('new_game', gameType);
 
-            expect(generateArguments).toEqual([2, 1]);
+            expect(generateArguments).toEqual(gameType);
         });
     });
 });

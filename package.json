@@ -22,7 +22,8 @@
         "ejs": "*",
         "socket.io": "~0.9",
         "mocha": "~1.14",
-        "chai": "~1.8"
+        "chai": "~1.8",
+        "bower": "~1.2"
     },
     "scripts": {
         "test": "./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS && ./node_modules/.bin/jasmine-node ./tests/minesweeper/model --requireJsSetup tests/lib/requireconfig/node.js --matchall --captureExceptions && ./node_modules/.bin/mocha ./tests/server"
