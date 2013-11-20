@@ -6,7 +6,11 @@
     "blacksonic <soos.gabor86@gmail.com>"
   ],
   "dependencies": {
-      "jquery": "latest"
+      "jquery": "latest",
+      "underscore": "latest",
+      "backbone": "latest",
+      "backbone.marionette": "latest",
+      "bootstrap": "latest"
   },
   "license": "MIT",
   "ignore": [

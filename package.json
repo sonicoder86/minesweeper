@@ -26,6 +26,6 @@
         "bower": "~1.2"
     },
     "scripts": {
-        "test": "./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS && ./node_modules/.bin/jasmine-node ./tests/minesweeper/model --requireJsSetup tests/lib/requireconfig/node.js --matchall --captureExceptions && ./node_modules/.bin/mocha ./tests/server"
+        "test": "./node_modules/.bin/bower install ./web/js/bower.json && ./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS && ./node_modules/.bin/jasmine-node ./tests/minesweeper/model --requireJsSetup tests/lib/requireconfig/node.js --matchall --captureExceptions && ./node_modules/.bin/mocha ./tests/server"
     }
 }
