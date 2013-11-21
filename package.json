@@ -12,7 +12,7 @@
         "backbone"
     ],
     "dependencies": {
-        "karma": "0.11.2",
+        "karma": "~0.11",
         "jasmine-node": "~1.11",
         "jquery": "~1.8",
         "underscore": "~1.5",
@@ -26,6 +26,6 @@
         "bower": "~1.2"
     },
     "scripts": {
-        "test": "./node_modules/.bin/bower install ./web/js/bower.json && ./node_modules/.bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS && ./node_modules/.bin/jasmine-node ./tests/minesweeper/model --requireJsSetup tests/lib/requireconfig/node.js --matchall --captureExceptions && ./node_modules/.bin/mocha ./tests/server"
+        "test": "./node_modules/.bin/bower install ./web/js/bower.json && ./node_modules/karma/bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS && ./node_modules/.bin/jasmine-node ./tests/minesweeper/model --requireJsSetup tests/lib/requireconfig/node.js --matchall --captureExceptions && ./node_modules/.bin/mocha ./tests/server"
     }
 }
