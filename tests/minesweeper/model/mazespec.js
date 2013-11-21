@@ -1,5 +1,6 @@
 var testDefine = typeof window === 'undefined' ? requirejs : define;
 testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeModel, Math) {
+    "use strict";
     var maze;
 
     describe('Maze model', function() {
@@ -36,7 +37,7 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                 expect(maze.getField(0, 0)).toBeTruthy();
                 expect(maze.getField(0, 1)).toBeTruthy();
 
-                expect(maze.getField(0, 2)).toBeUndefined();
+                expect(maze.getField(0, 2)).toBeNull();
             });
 
             it('should create 2 fields in a column when size is 2', function() {
@@ -46,7 +47,7 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                 expect(maze.getField(0, 0)).toBeTruthy();
                 expect(maze.getField(1, 0)).toBeTruthy();
 
-                expect(maze.getField(2, 0)).toBeUndefined();
+                expect(maze.getField(2, 0)).toBeNull();
             });
         });
 
@@ -135,7 +136,12 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
             it('should mark game as victory when all bombs are flagged and all fields are displayed', function() {
                 maze.generate();
                 maze.getFields().forEach(function(field) {
-                    field.get('isBomb') ? field.flag() : field.display();
+                    if (field.get('isBomb')) {
+                        field.flag();
+                    }
+                    else {
+                        field.display();
+                    }
                 });
 
                 expect(maze.get('status')).toEqual('victory');

@@ -1,4 +1,5 @@
 define(['minesweeper/model/field', 'minesweeper/view/field'], function(FieldModel, FieldView) {
+    "use strict";
     describe('FieldView', function() {
         var model, view, triggered;
 
@@ -45,5 +46,5 @@ define(['minesweeper/model/field', 'minesweeper/view/field'], function(FieldMode
 
             expect(view.$el.find('.btn')).not.toHaveClass('active');
         });
-    })
+    });
 });

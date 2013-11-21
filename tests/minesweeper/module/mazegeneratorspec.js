@@ -1,8 +1,9 @@
 define(['minesweeper/application', 'minesweeper/module/mazegenerator'],
-function(application, MazeGeneratorSetup)
+function(application, mazeGeneratorSetup)
 {
+    "use strict";
     beforeEach(function() {
-        MazeGeneratorSetup(application);
+        mazeGeneratorSetup(application);
     });
 
     afterEach(function() {

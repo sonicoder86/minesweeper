@@ -1,4 +1,5 @@
 define(['backbone'], function (Backbone) {
+    "use strict";
     return Backbone.Model.extend({
         defaults: {
             x: 0,
@@ -15,9 +16,9 @@ define(['backbone'], function (Backbone) {
                 x = this.get('x'),
                 y = this.get('y');
 
-            for (var i = x - 1; i <= x + 1; i++) {
-                for (var j = y - 1; j <= y + 1; j++) {
-                    if (x == i && y == j) {
+            for (var i = x - 1; i <= x + 1; i = i + 1) {
+                for (var j = y - 1; j <= y + 1; j = j + 1) {
+                    if (x === i && y === j) {
                         continue;
                     }
 
@@ -62,5 +63,5 @@ define(['backbone'], function (Backbone) {
             this.set({isFlagged: true});
             this.display();
         }
-    })
+    });
 });

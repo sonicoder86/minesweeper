@@ -1,12 +1,13 @@
 define(['minesweeper/application', 'minesweeper/module/menu', 'minesweeper/model/gametype'],
-function(application, MenuModuleSetup, GameTypeModel)
+function(application, menuModuleSetup, GameTypeModel)
 {
+    "use strict";
     describe('MenuModule', function() {
         var gameType = new GameTypeModel({size: 2, bombs: 1}),
             generateArguments = null;
 
         beforeEach(function() {
-            MenuModuleSetup(application);
+            menuModuleSetup(application);
             application.reqres.setHandler("maze:generate", function(gameType) {
                 generateArguments = gameType;
             });

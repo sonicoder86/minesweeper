@@ -1,6 +1,7 @@
 define(['minesweeper/application', 'minesweeper/module/game', 'minesweeper/collection/field', 'minesweeper/model/maze'],
     function(application, GameModuleSetup, FieldCollection, MazeModel)
 {
+    "use strict";
     var fields, maze;
 
     beforeEach(function() {

@@ -1,5 +1,6 @@
 define(['marionette', 'underscore', 'text!../template/game.html', '../view/maze', '../view/status'],
 function (Marionette, _, html, MazeView, StatusView) {
+    "use strict";
     return Marionette.Layout.extend({
         template: _.template(html),
 
@@ -27,5 +28,5 @@ function (Marionette, _, html, MazeView, StatusView) {
             this.mainRegion.show(this.mazeView);
             this.statusRegion.show(this.statusView);
         }
-    })
+    });
 });

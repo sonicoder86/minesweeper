@@ -1,4 +1,5 @@
 define(['marionette', 'underscore', 'text!../template/field.html'], function (Marionette, _, html) {
+    "use strict";
     return Marionette.ItemView.extend({
         template: _.template(html),
         className: 'pull-left',
@@ -37,15 +38,15 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
             var displayStatus = this.model.getDisplayStatus();
 
             return {
-                displayText : displayStatus == '' ? '&nbsp;&nbsp;' : displayStatus
-            }
+                displayText : displayStatus === '' ? '&nbsp;&nbsp;' : displayStatus
+            };
         },
 
         onRender: function()
         {
             if (this.model.get('isDisplayed')) {
-                this.$('.btn').addClass('active')
+                this.$('.btn').addClass('active');
             }
         }
-    })
+    });
 });

@@ -1,4 +1,8 @@
-define(['marionette', 'underscore', 'text!../template/menu.html', './gametype'], function (Marionette, _, html, GameTypeView) {
+define(
+    ['marionette', 'underscore', 'text!../template/menu.html', './gametype'],
+    function (Marionette, _, html, GameTypeView)
+{
+    "use strict";
     return Marionette.CompositeView.extend({
         template: _.template(html),
         tagName: 'ul',
@@ -12,5 +16,5 @@ define(['marionette', 'underscore', 'text!../template/menu.html', './gametype'],
                 this.trigger('new_game', gameTypeView.model);
             });
         }
-    })
+    });
 });

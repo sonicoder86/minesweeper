@@ -1,4 +1,5 @@
 define(['minesweeper/model/maze', 'minesweeper/view/status'], function(MazeModel, StatusView) {
+    "use strict";
     describe('StatusView', function() {
         var maze, view, triggered;
 
@@ -45,5 +46,5 @@ define(['minesweeper/model/maze', 'minesweeper/view/status'], function(MazeModel
 
             expect(view.ui.percentContainer.text()).toEqual('25 %');
         });
-    })
+    });
 });

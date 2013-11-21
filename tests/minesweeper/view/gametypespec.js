@@ -1,4 +1,5 @@
 define(['minesweeper/model/gametype', 'minesweeper/view/gametype'], function(GameTypeModel, GameTypeView) {
+    "use strict";
     describe('FieldView', function() {
         var model, view, triggered;
 
@@ -13,5 +14,5 @@ define(['minesweeper/model/gametype', 'minesweeper/view/gametype'], function(Gam
 
             expect(view.$el.text()).toEqual('5 x 5 with 1 bombs');
         });
-    })
+    });
 });

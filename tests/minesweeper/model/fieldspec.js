@@ -1,5 +1,6 @@
 var testDefine = typeof window === 'undefined' ? requirejs : define;
 testDefine(['minesweeper/model/field', 'underscore'], function(FieldModel, _) {
+    "use strict";
     var field;
 
     describe('Field model', function() {
@@ -32,7 +33,7 @@ testDefine(['minesweeper/model/field', 'underscore'], function(FieldModel, _) {
                 field.set(variant[1], {silent: true});
 
                 expect(field.getDisplayStatus()).toEqual(variant[0]);
-            }, this)
+            }, this);
         });
 
         it('should mark as flagged when not displayed before', function() {

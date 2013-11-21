@@ -1,4 +1,5 @@
 define(['backbone', '../model/field', '../collection/field', 'underscore', '../util/math'], function (Backbone, FieldModel, FieldCollection, _, Math) {
+    "use strict";
     return Backbone.Model.extend({
         fieldsArray: null,
 
@@ -34,8 +35,8 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
             var size = this.get('size');
 
             var fields = [];
-            for (var i = 0; i < size; i++) {
-                for (var j = 0; j < size; j++) {
+            for (var i = 0; i < size; i = i + 1) {
+                for (var j = 0; j < size; j = j + 1) {
                     var field = new FieldModel({x: i, y: j});
 
                     if (!this.fieldsArray[i]) {
@@ -60,20 +61,28 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
                     randomY = Math.floor(Math.random() * (size)),
                     field = this.getField(randomX, randomY);
 
-                if (field.get('isBomb')) continue;
+                if (field.get('isBomb')) {
+                    continue;
+                }
 
                 field.set('isBomb', true);
-                i++;
+                i = i + 1;
 
                 this.getNeighbours(field).forEach(function(neighbour) {
-                    neighbour.set('bombsNear', neighbour.get('bombsNear') + 1)
+                    neighbour.set('bombsNear', neighbour.get('bombsNear') + 1);
                 });
             }
         },
 
         getField: function(x, y)
         {
-            if (!this.fieldsArray[x]) return;
+            if (!this.fieldsArray[x]) {
+                return null;
+            }
+
+            if (!this.fieldsArray[x][y]) {
+                return null;
+            }
 
             return this.fieldsArray[x][y];
         },
@@ -81,11 +90,11 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
         getNeighbours: function(field)
         {
             var neighbours = new FieldCollection(),
-                neighbour = null,
                 possibleNeighbours = field.getPossibleNeighbours();
 
             _.forEach(possibleNeighbours, function(possibleNeighbour) {
-                if (neighbour = this.getField(possibleNeighbour.x, possibleNeighbour.y)) {
+                var neighbour = this.getField(possibleNeighbour.x, possibleNeighbour.y);
+                if (neighbour) {
                     neighbours.add(neighbour);
                 }
             }, this);
@@ -95,21 +104,29 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         display: function(field)
         {
-            if (this.get('status') == 'defeat') return;
+            if (this.get('status') === 'defeat') {
+                return;
+            }
 
-            if (field.get('isDisplayed')) return;
+            if (field.get('isDisplayed')) {
+                return;
+            }
 
             field.display();
-            if (field.get('bombsNear') > 0) return;
+            if (field.get('bombsNear') > 0) {
+                return;
+            }
 
             this.getNeighbours(field).forEach(function(neighbourField) {
-                this.display(neighbourField)
-            }, this)
+                this.display(neighbourField);
+            }, this);
         },
 
         flag: function(field)
         {
-            if (this.get('status') == 'defeat') return;
+            if (this.get('status') === 'defeat') {
+                return;
+            }
 
             field.flag();
         },
@@ -136,20 +153,19 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
 
         allBombsFlagged: function()
         {
-            return this.getFields().where({isBomb: true, isFlagged: true}).length == this.get('bombs');
+            return this.getFields().where({isBomb: true, isFlagged: true}).length === this.get('bombs');
         },
 
         allFieldsDisplayed: function()
         {
-            return this.getFields().where({isDisplayed: true}).length == this.get('size') * this.get('size');
+            return this.getFields().where({isDisplayed: true}).length === this.get('size') * this.get('size');
         },
 
         getCompletePercent: function()
         {
             var size = this.get('size');
 
-            return Math.round(this.getFields().where({isDisplayed: true}).length
-                / (size * size) * 100);
+            return Math.round(this.getFields().where({isDisplayed: true}).length / (size * size) * 100);
         },
 
         getFlagsLeft: function ()
@@ -170,5 +186,5 @@ define(['backbone', '../model/field', '../collection/field', 'underscore', '../u
             this.set({size: json.size, bombs: json.bombs});
             this.getFields().reset(json.fields);
         }
-    })
+    });
 });

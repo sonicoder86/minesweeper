@@ -1,4 +1,5 @@
 define(['marionette', 'underscore', 'text!../template/status.html'], function (Marionette, _, html) {
+    "use strict";
     return Marionette.ItemView.extend({
         template: _.template(html),
         className: 'btn btn-primary',
@@ -18,10 +19,10 @@ define(['marionette', 'underscore', 'text!../template/status.html'], function (M
         serializeData: function ()
         {
             var modelProperties = this.model.toJSON();
-            modelProperties['flagsLeft'] = this.model.getFlagsLeft();
-            modelProperties['percentCompleted'] = this.model.getCompletePercent();
+            modelProperties.flagsLeft = this.model.getFlagsLeft();
+            modelProperties.percentCompleted = this.model.getCompletePercent();
 
             return modelProperties;
         }
-    })
+    });
 });

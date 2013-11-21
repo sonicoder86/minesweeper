@@ -1,5 +1,6 @@
 define(['marionette', './module/mazegenerator', './module/game', './module/menu', 'bootstrap'],
 function (Marionette, mazeGeneratorModule, gameModule, menuModule) {
+    "use strict";
     var application = new Marionette.Application();
 
     application.addRegions({

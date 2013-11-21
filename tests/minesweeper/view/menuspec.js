@@ -1,4 +1,5 @@
 define(['minesweeper/view/menu', 'minesweeper/collection/gametype'], function(MenuView, GameTypeCollection) {
+    "use strict";
     describe('MenuView', function() {
         var gameTypes, menu, triggered, gameType;
 

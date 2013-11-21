@@ -1,6 +1,10 @@
-define(['../collection/field', '../model/field', '../model/maze', 'socketio'], function (FieldCollection, FieldModel, MazeModel, SocketIO) {
+define(
+    ['../collection/field', '../model/field', '../model/maze', 'socketio'],
+    function (FieldCollection, FieldModel, MazeModel, SocketIO)
+{
+    "use strict";
     return function(application) {
-        application.module('MazeGenerator', function(MazeGenerator, Minesweeper, Backbone, Marionette, $, _) {
+        application.module('MazeGenerator', function(MazeGenerator, Minesweeper) {
             MazeGenerator.maze = new MazeModel();
 
             Minesweeper.reqres.setHandler("maze:generate", function(gameType) {
