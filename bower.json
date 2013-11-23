@@ -7,13 +7,12 @@
   ],
   "dependencies": {
       "jquery": "latest",
-      "underscore-amd": "latest",
-      "backbone-amd": "latest",
       "backbone.marionette": "latest",
       "bootstrap": "latest",
       "requirejs": "latest",
       "requirejs-text": "latest",
-      "socket.io-client": "latest"
+      "socket.io-client": "latest",
+      "jasmine": "latest"
   },
   "license": "MIT",
   "ignore": [

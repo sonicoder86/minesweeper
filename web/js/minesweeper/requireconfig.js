@@ -3,8 +3,8 @@ requirejs.config({
     urlArgs: "bust=" + (new Date()).getTime(),
     paths: {
         jquery: 'lib/jquery/jquery',
-        underscore: 'lib/underscore-amd/underscore',
-        backbone: 'lib/backbone-amd/backbone',
+        underscore: 'lib/underscore/underscore',
+        backbone: 'lib/backbone/backbone',
         marionette: 'lib/backbone.marionette/lib/backbone.marionette',
         text: 'lib/requirejs-text/text',
         bootstrap: 'lib/bootstrap/dist/js/bootstrap',
@@ -12,6 +12,13 @@ requirejs.config({
     },
 
     shim: {
+        underscore: {
+            exports: '_'
+        },
+        backbone: {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
+        },
         marionette: {
             deps: ['backbone'],
             exports: 'Backbone.Marionette'

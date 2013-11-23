@@ -1,9 +1,10 @@
-var express = require('express')
-  , index = require('./routes/index')
-  , http = require('http')
-  , path = require('path')
-  , socketIO = require('socket.io')
-  , requirejs = require('./requiresetup').requirejs;
+"use strict";
+var express = require('express'),
+    index = require('./routes/index'),
+    http = require('http'),
+    path = require('path'),
+    socketIO = require('socket.io'),
+    requirejs = require('./requiresetup').requirejs;
 
 var app = express(),
     server = http.createServer(app),
@@ -20,6 +21,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, '../web')));
+  app.use(express.static(path.join(__dirname, '../tests')));
 });
 
 app.configure('development', function(){
@@ -28,6 +30,7 @@ app.configure('development', function(){
 
 app.get('/', index.index);
 app.get('/dev', index.devIndex);
+app.get('/test', index.test);
 
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -1,4 +1,4 @@
-
+"use strict";
 /*
  * GET home page.
  */
@@ -9,4 +9,8 @@ exports.index = function(req, res){
 
 exports.devIndex = function(req, res){
     res.render('devindex', { title: 'Express' });
+};
+
+exports.test = function(req, res){
+    res.render('test');
 };
