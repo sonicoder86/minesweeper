@@ -2,13 +2,13 @@ requirejs.config({
     baseUrl: 'js',
     urlArgs: "bust=" + (new Date()).getTime(),
     paths: {
-        jquery: 'bower_components/jquery/jquery',
-        underscore: 'bower_components/underscore-amd/underscore',
-        backbone: 'bower_components/backbone-amd/backbone',
-        marionette: 'bower_components/backbone.marionette/lib/backbone.marionette',
-        text: 'bower_components/requirejs-text/text',
-        bootstrap: 'bower_components/bootstrap/dist/js/bootstrap',
-        socketio: 'bower_components/socket.io-client/dist/socket.io'
+        jquery: 'lib/jquery/jquery',
+        underscore: 'lib/underscore-amd/underscore',
+        backbone: 'lib/backbone-amd/backbone',
+        marionette: 'lib/backbone.marionette/lib/backbone.marionette',
+        text: 'lib/requirejs-text/text',
+        bootstrap: 'lib/bootstrap/dist/js/bootstrap',
+        socketio: 'lib/socket.io-client/dist/socket.io'
     },
 
     shim: {

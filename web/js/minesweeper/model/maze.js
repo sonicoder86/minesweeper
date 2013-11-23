@@ -1,4 +1,7 @@
-define(['backbone', '../model/field', '../collection/field', 'underscore', '../util/math'], function (Backbone, FieldModel, FieldCollection, _, Math) {
+define(
+    ['backbone', '../model/field', '../collection/field', 'underscore', '../util/math'],
+    function (Backbone, FieldModel, FieldCollection, _, Math
+) {
     "use strict";
     return Backbone.Model.extend({
         fieldsArray: null,

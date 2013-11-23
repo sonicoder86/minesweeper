@@ -1,4 +1,4 @@
 .idea/*
 node_modules/*
-web/js/bower_components/*
+web/js/lib/*
 npm-debug.log

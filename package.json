@@ -25,7 +25,13 @@
         "chai": "~1.8",
         "bower": "~1.2"
     },
-    "scripts": {
-        "test": "./node_modules/.bin/bower install ./web/js/bower.json && ./node_modules/karma/bin/karma start ./karmaconfig.js --single-run --browsers PhantomJS && ./node_modules/.bin/jasmine-node ./tests/minesweeper/model --requireJsSetup tests/lib/requireconfig/node.js --matchall --captureExceptions && ./node_modules/.bin/mocha ./tests/server"
+    "devDependencies": {
+        "grunt": "~0.4",
+        "grunt-contrib-jshint": "~0.7",
+        "grunt-contrib-requirejs": "~0.4",
+        "grunt-mocha-test": "~0.7",
+        "grunt-jasmine-node": "~0.1",
+        "grunt-bower-task": "~0.3",
+        "grunt-karma": "git://github.com/karma-runner/grunt-karma.git"
     }
 }
