@@ -35,6 +35,7 @@
         "grunt-karma": "git://github.com/karma-runner/grunt-karma.git"
     },
     "scripts": {
+        "start": "grunt server",
         "test": "grunt test"
     }
 }
