@@ -1,4 +1,4 @@
-define(['backbone'], function (Backbone) {
+define(['backbone', 'underscore'], function (Backbone, _) {
     "use strict";
     return Backbone.Model.extend({
         defaults: {
@@ -16,15 +16,15 @@ define(['backbone'], function (Backbone) {
                 x = this.get('x'),
                 y = this.get('y');
 
-            for (var i = x - 1; i <= x + 1; i = i + 1) {
-                for (var j = y - 1; j <= y + 1; j = j + 1) {
-                    if (x === i && y === j) {
-                        continue;
+            _.forEach([-1, 0, 1], function(offsetX) {
+                _.forEach([-1, 0, 1], function(offsetY) {
+                    if (offsetY === 0 && offsetX === 0) {
+                        return;
                     }
 
-                    neighbours.push({x: i, y: j});
-                }
-            }
+                    neighbours.push({x: x + offsetX, y: y + offsetY});
+                });
+            });
 
             return neighbours;
         },
@@ -55,13 +55,17 @@ define(['backbone'], function (Backbone) {
         {
             if (this.get('isDisplayed')) {
                 if (this.get('isFlagged')) {
-                    this.set({isDisplayed: false, isFlagged: false});
+                    this.removeFlag();
                 }
                 return;
             }
 
-            this.set({isFlagged: true});
-            this.display();
+            this.set({isDisplayed: true, isFlagged: true});
+        },
+
+        removeFlag: function()
+        {
+            this.set({isDisplayed: false, isFlagged: false});
         }
     });
 });

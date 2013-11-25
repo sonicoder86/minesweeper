@@ -35,18 +35,15 @@ define(
 
         generateFields: function()
         {
-            var size = this.get('size');
+            var size = this.get('size'),
+                fields = [],
+                i, j, field;
 
-            var fields = [];
-            for (var i = 0; i < size; i = i + 1) {
-                for (var j = 0; j < size; j = j + 1) {
-                    var field = new FieldModel({x: i, y: j});
+            for (i = 0; i < size; i += 1) {
+                for (j = 0; j < size; j += 1) {
+                    field = new FieldModel({x: i, y: j});
 
-                    if (!this.fieldsArray[i]) {
-                        this.fieldsArray[i] = [];
-                    }
-
-                    this.fieldsArray[i][j] = field;
+                    this.addToFieldsArray(i, j, field);
                     fields.push(field);
                 }
             }
@@ -54,27 +51,40 @@ define(
             this.getFields().reset(fields);
         },
 
+        addToFieldsArray: function(i, j, field) {
+            if (!this.fieldsArray[i]) {
+                this.fieldsArray[i] = [];
+            }
+
+            this.fieldsArray[i][j] = field;
+        },
+
         placeBombs: function()
         {
-            var size = this.get('size'),
-                bombs = this.get('bombs');
+            var bombs = this.get('bombs'),
+                i, field;
 
-            for (var i = 0; i < bombs;) {
-                var randomX = Math.floor(Math.random() * (size)),
-                    randomY = Math.floor(Math.random() * (size)),
-                    field = this.getField(randomX, randomY);
+            for (i = 0; i < bombs;) {
+                field = this.getRandomField();
 
                 if (field.get('isBomb')) {
                     continue;
                 }
 
                 field.set('isBomb', true);
-                i = i + 1;
+                i += 1;
 
                 this.getNeighbours(field).forEach(function(neighbour) {
                     neighbour.set('bombsNear', neighbour.get('bombsNear') + 1);
                 });
             }
+        },
+
+        getRandomField: function()
+        {
+            var randomX = Math.floor(Math.random() * (this.get('size'))),
+                randomY = Math.floor(Math.random() * (this.get('size')));
+            return this.getField(randomX, randomY);
         },
 
         getField: function(x, y)
