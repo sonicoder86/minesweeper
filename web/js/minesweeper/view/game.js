@@ -6,7 +6,9 @@ function (Marionette, _, html, MazeView, StatusView) {
 
         initialize: function()
         {
-            this.mazeView = new MazeView({collection: this.model.getFields()});
+            this.mazeView = new MazeView({
+                collection: this.model.maze.getFields()
+            });
 
             this.listenTo(this.mazeView, 'itemview:display', function(view) {
                 this.model.display(view.model);

@@ -1,13 +1,17 @@
-define(['minesweeper/model/maze', 'minesweeper/view/status'], function(MazeModel, StatusView) {
+define(
+    ['minesweeper/model/maze', 'minesweeper/model/game', 'minesweeper/model/gametype', 'minesweeper/view/status'],
+    function(MazeModel, GameModel, GameTypeModel, StatusView)
+{
     "use strict";
     describe('StatusView', function() {
-        var maze, view, triggered;
+        var maze, view, triggered, game;
 
         beforeEach(function() {
-            maze = new MazeModel({size: 2, bombs: 1});
-            maze.generate();
+            game = new GameModel();
+            game.generate(new GameTypeModel({size: 2, bombs: 1}));
+            maze = game.maze;
 
-            view = new StatusView({model: maze});
+            view = new StatusView({model: game});
             triggered = false;
         });
 
@@ -23,7 +27,7 @@ define(['minesweeper/model/maze', 'minesweeper/view/status'], function(MazeModel
 
         it('should display new status when status change', function() {
             view.render();
-            maze.set('status', 'defeat');
+            game.set('status', 'defeat');
 
             expect(view.ui.statusContainer.text()).toEqual('defeat');
         });

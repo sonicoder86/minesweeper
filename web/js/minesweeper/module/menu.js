@@ -11,7 +11,7 @@ define(['../collection/gametype', '../view/menu'], function (GameTypeCollection,
             Menu.menuView = new MenuView({collection: gameTypes});
 
             Menu.menuView.on('new_game', function(newGameType) {
-                Minesweeper.request('maze:generate', newGameType);
+                Minesweeper.request('new_game', newGameType);
             });
 
             Minesweeper.menuRegion.show(Menu.menuView);

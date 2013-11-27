@@ -8,16 +8,13 @@ define(
 
         defaults: {
             size: 3,
-            bombs: 1,
-            status: 'in_progress'
+            bombs: 1
         },
 
         initialize: function()
         {
             this.fieldsArray = [];
             this.set({fields: new FieldCollection()}, {silent: true});
-
-            this.listenTo(this.getFields(), 'change', this.calculateStatus);
         },
 
         generate: function()
@@ -75,9 +72,14 @@ define(
                 i += 1;
 
                 this.getNeighbours(field).forEach(function(neighbour) {
-                    neighbour.set('bombsNear', neighbour.get('bombsNear') + 1);
-                });
+                    this.incrementBombsNear(neighbour);
+                }, this);
+                this.incrementBombsNear(field);
             }
+        },
+
+        incrementBombsNear: function(field) {
+            field.set('bombsNear', field.get('bombsNear') + 1);
         },
 
         getRandomField: function()
@@ -117,10 +119,6 @@ define(
 
         display: function(field)
         {
-            if (this.get('status') === 'defeat') {
-                return;
-            }
-
             if (field.get('isDisplayed')) {
                 return;
             }
@@ -137,26 +135,7 @@ define(
 
         flag: function(field)
         {
-            if (this.get('status') === 'defeat') {
-                return;
-            }
-
             field.flag();
-        },
-
-        calculateStatus: function()
-        {
-            var status = 'in_progress';
-            if (this.anyBombDisplayed()) {
-                status = 'defeat';
-            }
-
-            if (this.allBombsFlagged() && this.allFieldsDisplayed()) {
-                status = 'victory';
-            }
-
-            this.set('status', status);
-            return status;
         },
 
         anyBombDisplayed: function()

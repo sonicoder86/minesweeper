@@ -8,13 +8,13 @@ function(application, menuModuleSetup, GameTypeModel)
 
         beforeEach(function() {
             menuModuleSetup(application);
-            application.reqres.setHandler("maze:generate", function(gameType) {
+            application.reqres.setHandler("new_game", function(gameType) {
                 generateArguments = gameType;
             });
         });
 
         afterEach(function() {
-            application.reqres.removeHandler("maze:generate");
+            application.reqres.removeHandler("new_game");
         });
 
         it('should generate new maze when new game is selected', function() {

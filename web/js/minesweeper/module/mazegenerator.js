@@ -8,9 +8,9 @@ define(
             var game = new GameModel();
             MazeGenerator.game = game;
 
-            Minesweeper.reqres.setHandler("maze:generate", function(gameType) {
+            Minesweeper.reqres.setHandler("new_game", function(gameType) {
                 game.generate(gameType);
-                return game.maze;
+                return game;
             });
 
             MazeGenerator.on('start', function() {

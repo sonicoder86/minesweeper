@@ -5,9 +5,9 @@ define(
     "use strict";
     return function(application) {
         application.module('Game', function(Game, Minesweeper) {
-            var maze = Minesweeper.request('maze:generate', new GameType({size: 9, bombs: 10}));
+            var game = Minesweeper.request('new_game', new GameType({size: 9, bombs: 10}));
             Game.layoutView = new GameLayout({
-                model: maze
+                model: game
             });
 
             Game.on('start', function() {

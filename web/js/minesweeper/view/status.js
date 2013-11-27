@@ -13,14 +13,16 @@ define(['marionette', 'underscore', 'text!../template/status.html'], function (M
         initialize: function()
         {
             this.listenTo(this.model, 'change:status', this.render);
-            this.listenTo(this.model.getFields(), 'change', this.render);
+            this.listenTo(this.model.maze.getFields(), 'change', this.render);
         },
 
         serializeData: function ()
         {
-            var modelProperties = this.model.toJSON();
-            modelProperties.flagsLeft = this.model.getFlagsLeft();
-            modelProperties.percentCompleted = this.model.getCompletePercent();
+            var maze = this.model.maze,
+                modelProperties = this.model.toJSON();
+
+            modelProperties.flagsLeft = maze.getFlagsLeft();
+            modelProperties.percentCompleted = maze.getCompletePercent();
 
             return modelProperties;
         }
