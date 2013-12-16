@@ -3,11 +3,11 @@ function(application, mazeGeneratorSetup)
 {
     "use strict";
     beforeEach(function() {
-        mazeGeneratorSetup(application);
+        //mazeGeneratorSetup(application);
     });
 
     afterEach(function() {
-        application.reqres.removeHandler("maze:generate");
+        //application.reqres.removeHandler("maze:generate");
     });
 
     describe('MazeGeneratorModule', function() {

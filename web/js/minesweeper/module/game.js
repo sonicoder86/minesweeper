@@ -5,13 +5,17 @@ define(
     "use strict";
     return function(application) {
         application.module('Game', function(Game, Minesweeper) {
-            var game = Minesweeper.request('new_game', new GameType({size: 9, bombs: 10}));
-            Game.layoutView = new GameLayout({
-                model: game
-            });
+            Game.layoutView = new GameLayout();
 
             Game.on('start', function() {
+                var game = Minesweeper.request('new_game', new GameType({size: 9, bombs: 10}));
+                Game.layoutView.initializeGame(game);
+
                 Minesweeper.gameRegion.show(Game.layoutView);
+            });
+
+            Game.on('stop', function() {
+                Minesweeper.gameRegion.close();
             });
         });
     };

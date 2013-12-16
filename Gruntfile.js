@@ -39,10 +39,15 @@ module.exports = function(grunt) {
             requirejs: "tests/lib/requireconfig/node.js"
         },
         karma: {
-            continous: {
+            options: {
                 configFile: 'karmaconfig.js',
-                singleRun: true,
                 browsers: ['PhantomJS']
+            },
+            continous: {
+                singleRun: true
+            },
+            unit: {
+                autoWatch: true
             }
         },
         bower: {
