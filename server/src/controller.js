@@ -7,6 +7,10 @@ var req = require('../requiresetup').requirejs,
 
 exports.initialize = function(socket) {
     socket.on('join', function() {
+        if (typeof room.getRoom(socket.id) !== 'undefined') {
+            return;
+        }
+
         var roomId = room.add(socket.id);
         socket.join('room_'+roomId);
 
@@ -19,5 +23,13 @@ exports.initialize = function(socket) {
         }
     });
 
+    socket.on('display', function(field) {
+        var roomId = room.getRoom(socket.id);
+        socket.broadcast.to('room_'+roomId).emit('display', field);
+    });
 
+    socket.on('flag', function(field) {
+        var roomId = room.getRoom(socket.id);
+        socket.broadcast.to('room_'+roomId).emit('flag', field);
+    });
 };

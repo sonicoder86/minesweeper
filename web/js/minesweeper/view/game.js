@@ -1,5 +1,5 @@
-define(['marionette', 'underscore', 'text!../template/game.html', '../view/maze', '../view/status', './waiting'],
-function (Marionette, _, html, MazeView, StatusView, WaitingView) {
+define(['marionette', 'underscore', 'text!../template/game.html', './maze', './status', './waiting', '../event'],
+function (Marionette, _, html, MazeView, StatusView, WaitingView, Event) {
     "use strict";
     return Marionette.Layout.extend({
         template: _.template(html),
@@ -27,9 +27,17 @@ function (Marionette, _, html, MazeView, StatusView, WaitingView) {
             });
 
             this.listenTo(this.mazeView, 'itemview:display', function(view) {
+                Event.trigger('display', {
+                    x: view.model.get('x'),
+                    y: view.model.get('y')
+                });
                 this.model.display(view.model);
             });
             this.listenTo(this.mazeView, 'itemview:flag', function(view) {
+                Event.trigger('flag', {
+                    x: view.model.get('x'),
+                    y: view.model.get('y')
+                });
                 this.model.flag(view.model);
             });
         },
