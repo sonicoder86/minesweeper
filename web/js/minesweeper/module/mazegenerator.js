@@ -1,6 +1,6 @@
 define(
-    ['../model/maze', '../model/game', 'socketio'],
-    function (MazeModel, GameModel, SocketIO)
+    ['../model/maze', '../model/game', 'socketio', '../event'],
+    function (MazeModel, GameModel, SocketIO, Event)
 {
     "use strict";
     return function(application) {
@@ -26,6 +26,35 @@ define(
                 socket.on('game', function (mazeJSON) {
                     game.maze.fromJSON(mazeJSON);
                     game.set('status', 'in_progress');
+                    game.set('type', 'remote');
+                });
+
+                socket.on('display', function (field) {
+                    game.maze.display(
+                        game.maze.getField(field.x, field.y)
+                    );
+                });
+
+                socket.on('flag', function (field) {
+                    game.maze.flag(
+                        game.maze.getField(field.x, field.y)
+                    );
+                });
+
+                Event.on('display', function(field) {
+                    if (game.get('type') !== 'remote') {
+                        return;
+                    }
+
+                    socket.emit('display', field.toJSON());
+                });
+
+                Event.on('flag', function(field) {
+                    if (game.get('type') !== 'remote') {
+                        return;
+                    }
+
+                    socket.emit('flag', field.toJSON());
                 });
             });
         });

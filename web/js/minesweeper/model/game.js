@@ -2,7 +2,8 @@ define(['backbone', './maze'], function (Backbone, Maze) {
     "use strict";
     return Backbone.Model.extend({
         defaults: {
-            status: 'in_progress'
+            status: 'in_progress',
+            type: 'local'
         },
 
         initialize: function()
@@ -15,6 +16,7 @@ define(['backbone', './maze'], function (Backbone, Maze) {
         generate: function(gameType)
         {
             this.maze.set({size: gameType.get('size'), bombs: gameType.get('bombs')});
+            this.set('type', gameType.get('isRemote') ? 'remote' : 'local');
             this.maze.generate();
         },
 
