@@ -4,8 +4,6 @@ define(
 ) {
     "use strict";
     return Backbone.Model.extend({
-        fieldsArray: null,
-
         defaults: {
             size: 3,
             bombs: 1
@@ -13,14 +11,11 @@ define(
 
         initialize: function()
         {
-            this.fieldsArray = [];
             this.set({fields: new FieldCollection()}, {silent: true});
         },
 
         generate: function()
         {
-            this.fieldsArray = [];
-
             this.generateFields();
             this.placeBombs();
         },
@@ -40,20 +35,11 @@ define(
                 for (j = 0; j < size; j += 1) {
                     field = new FieldModel({x: i, y: j});
 
-                    this.addToFieldsArray(i, j, field);
                     fields.push(field);
                 }
             }
 
             this.getFields().reset(fields);
-        },
-
-        addToFieldsArray: function(i, j, field) {
-            if (!this.fieldsArray[i]) {
-                this.fieldsArray[i] = [];
-            }
-
-            this.fieldsArray[i][j] = field;
         },
 
         placeBombs: function()
@@ -91,15 +77,7 @@ define(
 
         getField: function(x, y)
         {
-            if (!this.fieldsArray[x]) {
-                return null;
-            }
-
-            if (!this.fieldsArray[x][y]) {
-                return null;
-            }
-
-            return this.fieldsArray[x][y];
+            return this.getFields().findWhere({x: x, y: y});
         },
 
         getNeighbours: function(field)

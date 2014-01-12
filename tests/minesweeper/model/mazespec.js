@@ -29,7 +29,7 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                 expect(maze.getField(0, 0)).toBeTruthy();
                 expect(maze.getField(0, 1)).toBeTruthy();
 
-                expect(maze.getField(0, 2)).toBeNull();
+                expect(maze.getField(0, 2)).toBeUndefined();
             });
 
             it('should create 2 fields in a column when size is 2', function() {
@@ -39,7 +39,7 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
                 expect(maze.getField(0, 0)).toBeTruthy();
                 expect(maze.getField(1, 0)).toBeTruthy();
 
-                expect(maze.getField(2, 0)).toBeNull();
+                expect(maze.getField(2, 0)).toBeUndefined();
             });
         });
 

@@ -10,8 +10,7 @@ define(['marionette', 'underscore', 'text!../template/status.html'], function (M
             percentContainer: '#percentContainer'
         },
 
-        initialize: function()
-        {
+        onShow: function() {
             this.listenTo(this.model, 'change:status', this.render);
             this.listenTo(this.model.maze.getFields(), 'change', this.render);
         },

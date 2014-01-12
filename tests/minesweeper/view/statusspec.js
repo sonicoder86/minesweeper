@@ -27,6 +27,7 @@ define(
 
         it('should display new status when status change', function() {
             view.render();
+            view.onShow();
             game.set('status', 'defeat');
 
             expect(view.ui.statusContainer.text()).toEqual('defeat');
@@ -46,6 +47,7 @@ define(
 
         it('should display new percent when field displayed', function() {
             view.render();
+            view.onShow();
             maze.getField(0, 0).flag();
 
             expect(view.ui.percentContainer.text()).toEqual('25 %');

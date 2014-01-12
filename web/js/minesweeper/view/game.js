@@ -1,11 +1,21 @@
-define(['marionette', 'underscore', 'text!../template/game.html', '../view/maze', '../view/status'],
-function (Marionette, _, html, MazeView, StatusView) {
+define(['marionette', 'underscore', 'text!../template/game.html', '../view/maze', '../view/status', './waiting'],
+function (Marionette, _, html, MazeView, StatusView, WaitingView) {
     "use strict";
     return Marionette.Layout.extend({
         template: _.template(html),
 
         initializeGame: function(game) {
             this.model = game;
+
+            this.model.on('change:status', function(model, status) {
+                if (status === 'waiting') {
+                    this.statusRegion.show(new WaitingView());
+                }
+
+                if (status === 'in_progress' && model.previous('status') === 'waiting') {
+                    this.statusRegion.show(this.statusView);
+                }
+            }, this);
 
             this.createMaze();
             this.statusView = new StatusView({model: this.model});
