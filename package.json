@@ -39,6 +39,7 @@
         "grunt-bower-task": "~0.3",
         "grunt-karma": "git://github.com/karma-runner/grunt-karma.git"
     },
+
     "scripts": {
         "test": "grunt test",
         "start": "node_modules/.bin/bower install && node server/app.js"
