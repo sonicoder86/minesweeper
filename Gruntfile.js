@@ -3,13 +3,13 @@ module.exports = function(grunt) {
     "use strict";
 
     grunt.initConfig({
-//        jshint: {
-//            files: ['web/js/minesweeper/**/*.js'],
-//            options: {
-//                ignores: ['web/js/minesweeper/application.min.js'],
-//                jshintrc : '.jshintrc'
-//            }
-//        },
+        jshint: {
+            files: ['web/js/minesweeper/**/*.js'],
+            options: {
+                ignores: ['web/js/minesweeper/application.min.js'],
+                jshintrc : '.jshintrc'
+            }
+        },
         requirejs: {
             compile: {
                 options: {
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
         }
     });
 
-    //grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-jasmine-node');
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
 
     grunt.registerTask('mocha', ['mochaTest']);
-    grunt.registerTask('test', ['bower', 'karma:continous', 'mocha', 'jasmine_node']);
+    grunt.registerTask('test', ['bower', 'jshint', 'karma:continous', 'mocha', 'jasmine_node']);
 
     // Default task.
     grunt.registerTask('default', ['test']);
