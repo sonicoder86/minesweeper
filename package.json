@@ -40,6 +40,7 @@
         "grunt-karma": "git://github.com/karma-runner/grunt-karma.git"
     },
     "scripts": {
-        "test": "grunt test"
+        "test": "grunt test",
+        "start": "node server/app.js"
     }
 }
