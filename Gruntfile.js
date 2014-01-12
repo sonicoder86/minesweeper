@@ -68,7 +68,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
 
     grunt.registerTask('mocha', ['mochaTest']);
-    grunt.registerTask('test', ['bower', 'jshint', 'karma:continous', 'mocha', 'jasmine_node']);
+    grunt.registerTask('test', ['bower', 'karma:continous', 'mocha', 'jasmine_node']);
 
     // Default task.
     grunt.registerTask('default', ['test']);
