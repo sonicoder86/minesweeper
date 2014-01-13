@@ -33,6 +33,7 @@
         "require": true,
         "expect": true,
         "it": true,
+        "xit": true,
         "describe": true,
         "beforeEach": true,
         "afterEach": true,

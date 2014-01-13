@@ -21,7 +21,10 @@ module.exports = function(grunt) {
 
                     name: "minesweeper/application",
                     mainConfigFile: "web/js/minesweeper/requireconfig.js",
-                    out: "web/js/minesweeper/application.min.js"
+                    out: "web/js/minesweeper/application.min.js",
+                    wrap: {
+                        startFile: ["web/js/lib/requirejs/require.js", "web/js/minesweeper/requireconfig.js"]
+                    }
                 }
             }
         },

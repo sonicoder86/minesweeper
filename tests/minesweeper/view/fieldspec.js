@@ -31,20 +31,20 @@ define(['minesweeper/model/field', 'minesweeper/view/field'], function(FieldMode
             expect(triggered).toBeTruthy();
         });
 
-//        it('should display as pressed when model is displayed', function() {
-//            model.set('isDisplayed', true);
-//            view.render();
-//
-//            expect(view.$el.find('.btn')).toHaveClass('active');
-//        });
-//
-//        it('should render again when model changes', function() {
-//            model.set('isDisplayed', true);
-//            view.render();
-//
-//            model.set('isDisplayed', false);
-//
-//            expect(view.$el.find('.btn')).not.toHaveClass('active');
-//        });
+        xit('should display as pressed when model is displayed', function() {
+            model.set('isDisplayed', true);
+            view.render();
+
+            expect(view.$el.find('.btn')).toHaveClass('active');
+        });
+
+        xit('should render again when model changes', function() {
+            model.set('isDisplayed', true);
+            view.render();
+
+            model.set('isDisplayed', false);
+
+            expect(view.$el.find('.btn')).not.toHaveClass('active');
+        });
     });
 });

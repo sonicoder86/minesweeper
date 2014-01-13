@@ -15,12 +15,13 @@ app.configure(function(){
     app.set('views', __dirname + '/views');
     app.set('view engine', 'ejs');
     app.use(express.favicon());
-    app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(app.router);
     app.use(express.static(path.join(__dirname, '../web')));
     app.use(express.static(path.join(__dirname, '../tests')));
+    app.use(express.logger('dev'));
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('development', function(){
@@ -32,7 +33,7 @@ app.get('/dev', index.devIndex);
 app.get('/test', index.test);
 
 server.listen(app.get('port'), function(){
-    console.log("Express server listening on port " + app.get('port'));
+    console.log("Express server listening on port " + app.get('port') + "\n");
 });
 
 io.sockets.on('connection', require('./src/controller').initialize);
