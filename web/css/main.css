@@ -5,6 +5,7 @@ body {
   padding-top: 50px;
   background: #ffffff;
   font-family: 'Roboto Condensed', sans-serif;
+  background: url(../img/noisy_grid.png);
 }
 .starter-template {
   padding: 40px 15px;
@@ -59,6 +60,7 @@ body {
   margin: auto;
   width: 357px;
   padding: 30px;
+  background: #ffffff;
 }
 #main-region > .row {
   margin: 0;
@@ -101,11 +103,14 @@ body {
   margin: auto;
 }
 #status-region .status-wrapper {
-  width: 297px;
+  width: 355px;
   margin: auto;
   text-align: center;
   font-size: 13px;
   font-weight: bold;
+  background: #ffffff;
+  height: 30px;
+  padding: 0 29px;
 }
 #status-region .status-wrapper > div {
   float: left;
