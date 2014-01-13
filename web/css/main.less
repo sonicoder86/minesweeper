@@ -14,7 +14,7 @@ body {
 	background: @color6;
 	font-family: 'Roboto Condensed', sans-serif;
 
-	background: url(../img/gplaypattern_@2X.png);
+	background: url(../img/noisy_grid.png);
 }
 
 .starter-template {
@@ -30,7 +30,7 @@ body {
 	border: none;
 
 	.container {
-		max-width: 328px;
+		max-width: 468px;
 	}
 
 	.icon-bomb, .icon-bomb:before {
@@ -52,6 +52,33 @@ body {
 	.navbar-nav > li {
 		> a, >a:active, >a:visited {
 			color: @color6;
+
+		}
+
+		li {
+
+		}
+
+		li a:hover {
+			color: @color6 !important;
+			background: #080808 !important;
+		}
+	}
+
+	.dropdown-menu {
+		border-radius: 0;
+		box-shadow: 1px 0 0 #ddd, 0 1px 0 #ddd, -1px 0 0 #ddd;
+		padding: 0;
+		border: none;
+
+		li {
+			height: 40px;
+			display: block;
+			overflow: hidden;
+
+			a {
+				line-height: 35px;
+			}
 		}
 	}
 }
@@ -78,7 +105,7 @@ body {
 
 #main-region {
 	margin: auto;
-	width: 357px;
+	width: 438px;
 	padding: 30px;
 	background: @color6;
 
@@ -88,20 +115,19 @@ body {
 
 	.field {
 		float: left;
-		margin: 0 1px 1px 0;
-		border-radius: 2px;
+		margin: 0 2px 2px 0;
 
 		div {
 			border-radius: 0;
 			border: none;
 			background: @color1;
-			width: 32px;
-			height: 32px;
+			width: 40px;
+			height: 40px;
 			text-align: center;
 			overflow: hidden;
 			padding: 0;
 			box-shadow: none;
-			font: bold 20px/33px 'Nunito', sans-serif;
+			font: bold 24px/41px 'Nunito', sans-serif;
 			color: @color2;
 			transition: all .25s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 			-webkit-text-stroke: .5px;
@@ -132,18 +158,18 @@ body {
 	margin: auto;
 
 	.status-wrapper {
-		width: 355px;
-		margin: auto;
+		width: 438px;
+		margin: 0 auto 30px auto;
 		text-align: center;
-		font-size: 13px;
+		font-size: 17px;
 		font-weight: bold;
 		background: @color6;
-		height: 30px;
+		height: 50px;
 		padding: 0 29px;
 
 		> div {
 			float: left;
-			width: 99px;
+			width: 126px;
 			text-align: center;
 			overflow: hidden;
 		}
