@@ -2,7 +2,7 @@ define(['marionette', 'underscore', 'text!../template/status.html'], function (M
     "use strict";
     return Marionette.ItemView.extend({
         template: _.template(html),
-        className: 'btn btn-primary',
+        className: 'status-wrapper',
 
         ui: {
             statusContainer: '#statusContainer',

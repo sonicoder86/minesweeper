@@ -1,10 +1,129 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Nunito:400,700,300&subset=latin,latin-ext);
 body {
-    padding-top: 50px;
+  padding-top: 50px;
+  background: #ffffff;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 .starter-template {
-    padding: 40px 15px;
-    text-align: center;
+  padding: 40px 15px;
+  text-align: center;
 }
-.js-minesweeper > div {
-
+.navbar {
+  background: #181818;
+  border: none;
+}
+.navbar .container {
+  max-width: 328px;
+}
+.navbar .icon-bomb,
+.navbar .icon-bomb:before {
+  line-height: 17px;
+}
+.navbar .navbar-brand,
+.navbar .navbar-brand:active,
+.navbar .navbar-brand:visited {
+  font-size: 28px;
+  -webkit-text-stroke: 0.3px;
+  font-family: 'Lobster', cursive;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:active:hover,
+.navbar .navbar-brand:visited:hover {
+  color: #f0d800;
+}
+.navbar .navbar-nav > li > a,
+.navbar .navbar-nav > li > a:active,
+.navbar .navbar-nav > li > a:visited {
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .navbar-nav {
+    float: right;
+  }
+  .navbar-nav a.dropdown-toggle,
+  .navbar-nav a:active.dropdown-toggle,
+  .navbar-nav a:visited.dropdown-toggle {
+    background: #000;
+  }
+  .navbar-nav a:hover,
+  .navbar-nav a.active {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+#main-region {
+  margin: auto;
+  width: 357px;
+  padding: 30px;
+}
+#main-region > .row {
+  margin: 0;
+}
+#main-region .field {
+  float: left;
+  margin: 0 1px 1px 0;
+  border-radius: 2px;
+}
+#main-region .field div {
+  border-radius: 0;
+  border: none;
+  background: #f0d800;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  overflow: hidden;
+  padding: 0;
+  box-shadow: none;
+  font: bold 20px/33px 'Nunito', sans-serif;
+  color: #181818;
+  transition: all 0.1s ease-in-out;
+  -webkit-text-stroke: .5px;
+}
+#main-region .field div:hover {
+  transform: scale(0.9);
+}
+#main-region .field div.active {
+  transform: scale(1);
+  background: #ddebec;
+}
+#main-region .field .icon-bomb {
+  transform: scale(1.3) translateY(2px);
+  display: block;
+}
+#game-region {
+  margin-top: 30px;
+}
+#status-region {
+  margin: auto;
+}
+#status-region .status-wrapper {
+  width: 297px;
+  margin: auto;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+}
+#status-region .status-wrapper > div {
+  float: left;
+  width: 99px;
+  text-align: center;
+  overflow: hidden;
+}
+.btn-primary {
+  background: #181818;
+  color: #ddebec;
+  border: none;
+  border-radius: 0;
+  transition: all 0.1s ease-in-out;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+  background: #ddebec;
+  color: #181818;
 }

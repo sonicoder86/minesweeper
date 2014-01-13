@@ -2,7 +2,7 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
     "use strict";
     return Marionette.ItemView.extend({
         template: _.template(html),
-        className: 'pull-left',
+        className: 'field',
 
         events: {
             'contextmenu .btn': 'disableContextMenu',
@@ -33,19 +33,25 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
             }
         },
 
-        serializeData: function()
-        {
+        serializeData: function() {
             var displayStatus = this.model.getDisplayStatus();
 
+            if (displayStatus === "B") {
+                displayStatus = '<i class="icon-bomb"></i>';
+            } else if (displayStatus === "F") {
+                displayStatus = '<i class="fa fa-flag"></i>';
+            }
+
             return {
-                displayText : displayStatus === '' ? '&nbsp;&nbsp;' : displayStatus
+                displayText: displayStatus === '' ? '&nbsp;&nbsp;' : displayStatus
             };
         },
 
-        onRender: function()
-        {
+        onRender: function() {
             if (this.model.get('isDisplayed')) {
-                this.$('.btn').addClass('active');
+                setTimeout(_.bind(function() {
+                    this.$('.btn').addClass('active');
+                }, this), 1);
             }
         }
     });
