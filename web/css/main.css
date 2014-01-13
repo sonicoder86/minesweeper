@@ -5,7 +5,7 @@ body {
   padding-top: 50px;
   background: #ffffff;
   font-family: 'Roboto Condensed', sans-serif;
-  background: url(../img/noisy_grid.png);
+  background: url(../img/gplaypattern_@2X.png);
 }
 .starter-template {
   padding: 40px 15px;
@@ -82,11 +82,12 @@ body {
   box-shadow: none;
   font: bold 20px/33px 'Nunito', sans-serif;
   color: #181818;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -webkit-text-stroke: .5px;
 }
 #main-region .field div:hover {
   transform: scale(0.9);
+  transition: all 0.1s ease-in-out;
 }
 #main-region .field div.active {
   transform: scale(1);

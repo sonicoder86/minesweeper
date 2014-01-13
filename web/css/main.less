@@ -14,7 +14,7 @@ body {
 	background: @color6;
 	font-family: 'Roboto Condensed', sans-serif;
 
-	background: url(../img/noisy_grid.png);
+	background: url(../img/gplaypattern_@2X.png);
 }
 
 .starter-template {
@@ -103,11 +103,12 @@ body {
 			box-shadow: none;
 			font: bold 20px/33px 'Nunito', sans-serif;
 			color: @color2;
-			transition: all .1s ease-in-out;
+			transition: all .25s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 			-webkit-text-stroke: .5px;
 
 			&:hover {
 				transform: scale(.9);
+				transition: all .1s ease-in-out;
 			}
 
 			&.active {
