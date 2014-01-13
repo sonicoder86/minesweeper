@@ -3,7 +3,10 @@
 <head>
     <title>MineSweeper</title>
     <link href="js/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="js/lib/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="js/lib/font-mfizz/css/font-mfizz.css">
     <link href="css/main.css" rel="stylesheet">
+	<script type="text/javascript" src="js/lib/prefix-free/prefixfree.min.js"></script>
 </head>
 <body>
 
@@ -15,20 +18,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">MineSweeper</a>
+            <a class="navbar-brand" href="#"><i class="icon-bomb"></i> MineSweeper</a>
         </div>
         <div class="collapse navbar-collapse" id="menu-region"></div>
     </div>
 </div>
 
 <div class="container">
-
-    <div class="starter-template">
-        <h1>Backbone MineSweeper game</h1>
-        <p class="lead">Click on the fields to start the game.</p>
-    </div>
     <div id="game-region"></div>
-
 </div><!-- /.container -->
 
 <script type="text/javascript" src="js/lib/requirejs/require.js"></script>
