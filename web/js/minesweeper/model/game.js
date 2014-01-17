@@ -11,6 +11,7 @@ define(['backbone', './maze'], function (Backbone, Maze) {
             this.maze = new Maze();
 
             this.listenTo(this.maze.get('fields'), 'change', this.calculateStatus);
+            this.listenTo(this, 'change:status', this.updateElements);
         },
 
         generate: function(gameType)
@@ -32,6 +33,15 @@ define(['backbone', './maze'], function (Backbone, Maze) {
             }
 
             this.set('status', status);
+        },
+
+        updateElements: function() {
+            if (this.get('status') === 'defeat') {
+                this.maze.getFields().where({isBomb: true, isDisplayed: false}).forEach(function(field) {
+                    field.display();
+                });
+            }
+
         },
 
         display: function(field)

@@ -19,7 +19,7 @@ testDefine(['minesweeper/model/game', 'minesweeper/model/gametype'], function(Ga
             });
         };
 
-    describe('Field model', function() {
+    describe('Game model', function() {
         beforeEach(function() {
             game = new Game();
             game.generate(new GameType({size: 3, bombs: 1}));
@@ -88,6 +88,15 @@ testDefine(['minesweeper/model/game', 'minesweeper/model/gametype'], function(Ga
             game.flag(field);
 
             expect(field.flag).not.toHaveBeenCalled();
+        });
+
+        it('should display all bombs when one of the bombs displayed', function() {
+            game.generate(new GameType({size: 3, bombs: 2}));
+            markGameAsDefeat();
+
+            var bombsDisplayed = game.maze.getFields().where({isBomb: true, isDisplayed: true});
+
+            expect(bombsDisplayed.length).toEqual(2);
         });
     });
 });

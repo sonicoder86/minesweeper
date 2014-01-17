@@ -50,7 +50,8 @@ module.exports = function(grunt) {
                 singleRun: true
             },
             unit: {
-                autoWatch: true
+                autoWatch: true,
+                browsers: ['Chrome']
             }
         },
         bower: {
