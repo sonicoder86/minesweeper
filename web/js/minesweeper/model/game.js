@@ -1,4 +1,4 @@
-define(['backbone', './maze'], function (Backbone, Maze) {
+define(['backbone', './maze', '../event'], function (Backbone, Maze, Event) {
     "use strict";
     return Backbone.Model.extend({
         defaults: {
@@ -36,30 +36,38 @@ define(['backbone', './maze'], function (Backbone, Maze) {
         },
 
         updateElements: function() {
-            if (this.get('status') === 'defeat') {
-                this.maze.getFields().where({isBomb: true, isDisplayed: false}).forEach(function(field) {
-                    field.display();
-                });
+            if (this.isPlayable()) {
+                return;
             }
 
+            this.maze.getFields().where({isBomb: true, isDisplayed: false}).forEach(function(field) {
+                field.display();
+            });
         },
 
         display: function(field)
         {
-            if (this.get('status') === 'defeat') {
+            if (!this.isPlayable()) {
                 return;
             }
 
+            Event.trigger('display', field);
             this.maze.display(field);
         },
 
         flag: function(field)
         {
-            if (this.get('status') === 'defeat') {
+            if (!this.isPlayable()) {
                 return;
             }
 
+            Event.trigger('flag', field);
             this.maze.flag(field);
+        },
+
+        isPlayable: function()
+        {
+            return this.get('status') !== 'defeat';
         }
     });
 });

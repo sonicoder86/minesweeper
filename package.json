@@ -12,6 +12,16 @@
         "backbone"
     ],
     "dependencies": {
+        "jquery": "~1.8",
+        "underscore": "~1.5",
+        "backbone": "~1.1",
+        "requirejs": "~2.1",
+        "express": "~3.4",
+        "ejs": "*",
+        "socket.io": "~0.9",
+        "bower": "~1.2"
+    },
+    "devDependencies": {
         "karma": "~0.11",
         "karma-jasmine": "~0.1",
         "karma-requirejs": "~0.1",
@@ -21,25 +31,20 @@
         "karma-script-launcher": "~0.1",
 
         "jasmine-node": "~1.11",
-        "jquery": "~1.8",
-        "underscore": "~1.5",
-        "backbone": "~1.1",
-        "requirejs": "~2.1",
-        "express": "~3.4",
-        "ejs": "*",
-        "socket.io": "~0.9",
+
         "mocha": "~1.14",
         "chai": "~1.8",
-        "bower": "~1.2"
-    },
-    "devDependencies": {
+
+        "cssmin": "~0.4",
+
         "grunt": "~0.4",
         "grunt-contrib-jshint": "~0.7",
         "grunt-contrib-requirejs": "~0.4",
         "grunt-mocha-test": "~0.7",
         "grunt-jasmine-node": "~0.1",
         "grunt-bower-task": "~0.3",
-        "grunt-karma": "git://github.com/karma-runner/grunt-karma.git"
+        "grunt-karma": "git://github.com/karma-runner/grunt-karma.git",
+        "grunt-contrib-cssmin": "~0.7"
     },
 
     "scripts": {

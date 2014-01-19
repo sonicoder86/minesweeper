@@ -47,4 +47,15 @@ room.prototype.getRoom = function(userId) {
     return roomId;
 };
 
+room.prototype.remove = function(userId) {
+    var roomId = this.getRoom(userId);
+    if (!roomId) {
+        return false;
+    }
+
+    delete this.users[this.users.indexOf(userId)];
+    delete this.rooms[roomId][this.rooms[roomId].indexOf(userId)];
+    return true;
+};
+
 exports.room = room;

@@ -2,6 +2,6 @@ define(['marionette', 'underscore', 'text!../template/waiting.html'], function (
     "use strict";
     return Marionette.ItemView.extend({
         template: _.template(html),
-        className: 'btn btn-primary'
+        className: 'status-wrapper'
     });
 });

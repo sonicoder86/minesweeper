@@ -48,7 +48,7 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
         },
 
         onRender: function() {
-            if (this.model.get('isDisplayed')) {
+            if (this.model.get('isDisplayed') && !this.model.get('isFlagged')) {
                 setTimeout(_.bind(function() {
                     this.$('.btn').addClass('active');
                 }, this), 1);

@@ -28,6 +28,15 @@ module.exports = function(grunt) {
                 }
             }
         },
+        cssmin: {
+            minprod: {
+                files: {
+                    'web/css/minified.css': [
+                        'web/css/main.css'
+                    ]
+                }
+            }
+        },
         mochaTest: {
             options: {
                 reporter: 'spec'
@@ -66,6 +75,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-karma');
