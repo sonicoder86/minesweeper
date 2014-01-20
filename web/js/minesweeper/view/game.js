@@ -7,7 +7,7 @@ function (Marionette, _, html, MazeView, StatusView, WaitingView) {
         initializeGame: function(game) {
             this.model = game;
 
-            this.model.on('change:status', function(model, status) {
+            this.listenTo(this.model, 'change:status', function(model, status) {
                 if (status === 'waiting') {
                     this.statusRegion.show(new WaitingView());
                 }
@@ -15,7 +15,7 @@ function (Marionette, _, html, MazeView, StatusView, WaitingView) {
                 if (status === 'in_progress' && model.previous('status') === 'waiting') {
                     this.statusRegion.show(this.statusView);
                 }
-            }, this);
+            });
 
             this.createMaze();
             this.statusView = new StatusView({model: this.model});
@@ -41,8 +41,19 @@ function (Marionette, _, html, MazeView, StatusView, WaitingView) {
 
         onRender: function()
         {
+            this.listenTo(this.mainRegion, 'show', this.setMainRegionWidth);
+            this.listenTo(this.model.maze.get('fields'), 'reset', this.setMainRegionWidth);
+
             this.mainRegion.show(this.mazeView);
             this.statusRegion.show(this.statusView);
+        },
+
+        setMainRegionWidth: function()
+        {
+            this.mainRegion.$el.css(
+                'width',
+                this.model.maze.get('size') * (40 + 2) + 2 * 30
+            );
         }
     });
 });
