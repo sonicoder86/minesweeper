@@ -6,7 +6,7 @@
     "blacksonic <soos.gabor86@gmail.com>"
   ],
   "dependencies": {
-    "jquery": "~2.0",
+    "jquery": "~2.1",
     "backbone.marionette": "~1.4",
     "bootstrap": "~3.0",
     "requirejs": "~2.1",
