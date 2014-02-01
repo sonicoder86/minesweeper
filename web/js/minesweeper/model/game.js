@@ -16,7 +16,7 @@ define(['backbone', './maze', '../event'], function (Backbone, Maze, Event) {
 
         generate: function(gameType)
         {
-            this.maze.set({size: gameType.get('size'), bombs: gameType.get('bombs')});
+            this.maze.set({sizeX: gameType.get('sizeX'), sizeY: gameType.get('sizeY'), bombs: gameType.get('bombs')});
             this.set('type', gameType.get('isRemote') ? 'remote' : 'local');
             this.maze.generate();
         },

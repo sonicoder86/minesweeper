@@ -33,7 +33,7 @@ gameSocket.prototype.join = function() {
 
 gameSocket.prototype.startGame = function(roomId) {
     console.log("room "+roomId+" is ready");
-    var maze = new mazeModel({size: 9, bombs: 10});
+    var maze = new mazeModel({sizeX: 9, sizeY: 9, bombs: 10});
     maze.generate();
 
     this.socket.emit('game', maze.toJSON());

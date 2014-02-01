@@ -4,7 +4,7 @@ define(['minesweeper/view/menu', 'minesweeper/collection/gametype'], function(Me
         var gameTypes, menu, triggered, gameType;
 
         beforeEach(function () {
-            gameTypes = new GameTypeCollection([{bombs: 1, size: 2, isRemote: false}]);
+            gameTypes = new GameTypeCollection([{}]);
             menu = new MenuView({collection: gameTypes});
             triggered = false;
             gameType = null;
@@ -20,7 +20,7 @@ define(['minesweeper/view/menu', 'minesweeper/collection/gametype'], function(Me
             menu.$('#game-type-list a').first().trigger('click');
 
             expect(triggered).toBeTruthy();
-            expect(gameType.get('size')).toEqual(2);
+            expect(gameType).toEqual(gameTypes.at(0));
         });
     });
 });

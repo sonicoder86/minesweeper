@@ -52,7 +52,7 @@ function (Marionette, _, html, MazeView, StatusView, WaitingView) {
         {
             this.mainRegion.$el.css(
                 'width',
-                this.model.maze.get('size') * (40 + 2) + 2 * 30
+                this.model.maze.get('sizeY') * (40 + 2) + 2 * 30
             );
         }
     });

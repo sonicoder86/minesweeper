@@ -5,7 +5,8 @@ define(
     "use strict";
     return Backbone.Model.extend({
         defaults: {
-            size: 3,
+            sizeX: 3,
+            sizeY: 3,
             bombs: 1
         },
 
@@ -27,12 +28,11 @@ define(
 
         generateFields: function()
         {
-            var size = this.get('size'),
-                fields = [],
+            var fields = [],
                 i, j, field;
 
-            for (i = 0; i < size; i += 1) {
-                for (j = 0; j < size; j += 1) {
+            for (i = 0; i < this.get('sizeX'); i += 1) {
+                for (j = 0; j < this.get('sizeY'); j += 1) {
                     field = new FieldModel({x: i, y: j});
 
                     fields.push(field);
@@ -70,8 +70,8 @@ define(
 
         getRandomField: function()
         {
-            var randomX = Math.floor(Math.random() * (this.get('size'))),
-                randomY = Math.floor(Math.random() * (this.get('size')));
+            var randomX = Math.floor(Math.random() * this.get('sizeX')),
+                randomY = Math.floor(Math.random() * this.get('sizeY'));
             return this.getField(randomX, randomY);
         },
 
@@ -128,14 +128,12 @@ define(
 
         allFieldsDisplayed: function()
         {
-            return this.getFields().where({isDisplayed: true}).length === this.get('size') * this.get('size');
+            return this.getFields().where({isDisplayed: true}).length === this.getSizeCount();
         },
 
         getCompletePercent: function()
         {
-            var size = this.get('size');
-
-            return Math.round(this.getFields().where({isDisplayed: true}).length / (size * size) * 100);
+            return Math.round(this.getFields().where({isDisplayed: true}).length / this.getSizeCount() * 100);
         },
 
         getFlagsLeft: function ()
@@ -153,8 +151,12 @@ define(
 
         fromJSON: function(json)
         {
-            this.set({size: json.size, bombs: json.bombs});
+            this.set({sizeX: json.sizeX, sizeY: json.sizeY, bombs: json.bombs});
             this.getFields().reset(json.fields);
+        },
+
+        getSizeCount: function() {
+            return this.get('sizeX') * this.get('sizeY');
         }
     });
 });

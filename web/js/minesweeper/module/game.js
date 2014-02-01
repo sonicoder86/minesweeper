@@ -8,7 +8,7 @@ define(
             Game.layoutView = new GameLayout();
 
             Game.on('start', function() {
-                var game = Minesweeper.request('new_game', new GameType({size: 9, bombs: 10}));
+                var game = Minesweeper.request('new_game', new GameType({sizeX: 9, sizeY: 9, bombs: 10}));
                 Game.layoutView.initializeGame(game);
 
                 Minesweeper.gameRegion.show(Game.layoutView);

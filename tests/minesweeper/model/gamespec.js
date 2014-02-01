@@ -22,12 +22,10 @@ testDefine(['minesweeper/model/game', 'minesweeper/model/gametype'], function(Ga
     describe('Game model', function() {
         beforeEach(function() {
             game = new Game();
-            game.generate(new GameType({size: 3, bombs: 1}));
+            game.generate(new GameType());
         });
 
         it('should generate maze with given parameters', function() {
-            game.generate(new GameType({size: 3, bombs: 1}));
-
             expect(game.maze.get('fields').length).toEqual(9);
             expect(game.maze.get('bombs')).toEqual(1);
         });
@@ -91,7 +89,7 @@ testDefine(['minesweeper/model/game', 'minesweeper/model/gametype'], function(Ga
         });
 
         it('should display all bombs when one of the bombs displayed', function() {
-            game.generate(new GameType({size: 3, bombs: 2}));
+            game.generate(new GameType({sizeX: 3, sizeY: 3,bombs: 2}));
             markGameAsDefeat();
 
             var bombsDisplayed = game.maze.getFields().where({isBomb: true, isDisplayed: true});

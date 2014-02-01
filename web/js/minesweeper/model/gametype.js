@@ -2,8 +2,9 @@ define(['backbone'], function (Backbone) {
     "use strict";
     return Backbone.Model.extend({
         defaults: {
-            size: 0,
-            bombs: 0,
+            sizeX: 3,
+            sizeY: 3,
+            bombs: 1,
             isRemote: false
         }
     });

@@ -8,7 +8,7 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
 
     describe('Maze model', function() {
         beforeEach(function() {
-            maze = new MazeModel({size: 3, bombs: 1});
+            maze = new MazeModel({sizeX: 3, sizeY: 3, bombs: 1});
         });
 
         afterEach(function() {
@@ -23,7 +23,8 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
             });
 
             it('should create 2 fields in a row when size is 2', function() {
-                maze.set('size', 2);
+                maze.set('sizeX', 2);
+                maze.set('sizeY', 2);
                 maze.generate();
 
                 expect(maze.getField(0, 0)).toBeTruthy();
@@ -33,7 +34,8 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
             });
 
             it('should create 2 fields in a column when size is 2', function() {
-                maze.set('size', 2);
+                maze.set('sizeX', 2);
+                maze.set('sizeY', 2);
                 maze.generate();
 
                 expect(maze.getField(0, 0)).toBeTruthy();
@@ -152,18 +154,18 @@ testDefine(['minesweeper/model/maze', 'minesweeper/util/math'], function(MazeMod
             it('should load size from JSON', function() {
                 maze.generate();
 
-                var json = {size: 2, bombs: 1, fields: []};
+                var json = {sizeX: 2, sizeY: 2, bombs: 1, fields: []};
 
                 maze.fromJSON(json);
 
-                expect(maze.get('size')).toEqual(2);
+                expect(maze.get('sizeX')).toEqual(2);
                 expect(maze.get('bombs')).toEqual(1);
             });
 
             it('should load fields from JSON', function() {
                 maze.generate();
 
-                var json = {size: 2, bombs: 1, fields: [{}, {}]};
+                var json = {sizeX: 2, sizeY: 2, bombs: 1, fields: [{}, {}]};
 
                 maze.fromJSON(json);
 

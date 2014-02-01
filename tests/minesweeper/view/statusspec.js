@@ -8,7 +8,7 @@ define(
 
         beforeEach(function() {
             game = new GameModel();
-            game.generate(new GameTypeModel({size: 2, bombs: 1}));
+            game.generate(new GameTypeModel({bombs: 1}));
             maze = game.maze;
 
             view = new StatusView({model: game});
@@ -50,7 +50,7 @@ define(
             view.onShow();
             maze.getField(0, 0).flag();
 
-            expect(view.ui.percentContainer.text()).toEqual('25 %');
+            expect(view.ui.percentContainer.text()).toEqual('11 %');
         });
     });
 });

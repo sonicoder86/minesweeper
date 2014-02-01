@@ -4,7 +4,7 @@ define(['minesweeper/model/gametype', 'minesweeper/view/gametype'], function(Gam
         var model, view, triggered;
 
         beforeEach(function() {
-            model = new GameTypeModel({size: 5, bombs: 1, isRemote: false});
+            model = new GameTypeModel();
             view = new GameTypeView({model: model});
             triggered = false;
         });
@@ -12,7 +12,7 @@ define(['minesweeper/model/gametype', 'minesweeper/view/gametype'], function(Gam
         it('should display size and bombs of a game', function() {
             view.render();
 
-            expect(view.$el.text()).toEqual('5 x 5 with 1 bombs');
+            expect(view.$el.text()).toEqual('3 x 3 with 1 bombs');
         });
     });
 });
