@@ -2,11 +2,11 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
     "use strict";
     return Marionette.ItemView.extend({
         template: _.template(html),
-        className: 'field',
+        className: 'field btn btn-default',
 
         events: {
-            'contextmenu .btn': 'disableContextMenu',
-            'mousedown .btn': 'triggerDownClick'
+            'contextmenu': 'disableContextMenu',
+            'mousedown': 'triggerDownClick'
         },
 
         initialize: function()
@@ -50,7 +50,7 @@ define(['marionette', 'underscore', 'text!../template/field.html'], function (Ma
         onRender: function() {
             if (this.model.get('isDisplayed') && !this.model.get('isFlagged')) {
                 setTimeout(_.bind(function() {
-                    this.$('.btn').addClass('active');
+                    this.$el.addClass('active');
                 }, this), 1);
             }
         }

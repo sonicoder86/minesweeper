@@ -15,7 +15,6 @@ define(['backbone', 'underscore', '../util/pad'], function (Backbone, _, pad) {
 
         increment: function() {
             this.set('counter', this.get('counter') + 1);
-            console.log(this.get('counter'));
         },
 
         stop: function() {

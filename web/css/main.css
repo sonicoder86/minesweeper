@@ -89,8 +89,6 @@ body {
 #main-region .field {
   float: left;
   margin: 0 2px 2px 0;
-}
-#main-region .field div {
   border-radius: 0;
   border: none;
   background: #f0d800;
@@ -105,11 +103,11 @@ body {
   transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -webkit-text-stroke: .5px;
 }
-#main-region .field div:hover {
+#main-region .field:hover {
   transform: scale(0.9);
   transition: all 0.1s ease-in-out;
 }
-#main-region .field div.active {
+#main-region .field.active {
   transform: scale(1);
   background: #ddebec;
 }
