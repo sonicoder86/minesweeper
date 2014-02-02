@@ -1,17 +1,19 @@
 define(
-    ['marionette', '../view/maze', '../view/status', '../view/game', '../model/gametype'],
-    function (Marionette, MazeView, StatusView, GameLayout, GameType)
+    ['marionette', '../view/maze', '../view/status', '../view/game', '../model/gametimer'],
+    function (Marionette, MazeView, StatusView, GameLayout, GameTimer)
 {
     "use strict";
     return function(application) {
         application.module('Game', function(Game, Minesweeper) {
-            Game.layoutView = new GameLayout();
+            Game.layoutView = new GameLayout({el: '#game-region'});
 
             Game.on('start', function() {
-                var game = Minesweeper.request('new_game', new GameType({sizeX: 9, sizeY: 9, bombs: 10}));
+                var game = Minesweeper.request('new_game');
+                this.timer = new GameTimer({game: game});
+
                 Game.layoutView.initializeGame(game);
 
-                Minesweeper.gameRegion.show(Game.layoutView);
+                Game.layoutView.render();
             });
 
             Game.on('stop', function() {

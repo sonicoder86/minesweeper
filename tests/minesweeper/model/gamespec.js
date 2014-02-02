@@ -8,6 +8,9 @@ testDefine(['minesweeper/model/game', 'minesweeper/model/gametype'], function(Ga
         getFieldWithoutBomb = function() {
             return game.maze.getFields().findWhere({isBomb: false, isDisplayed: false});
         },
+        getFieldWithBomb = function() {
+            return game.maze.getFields().findWhere({isBomb: true, isDisplayed: false});
+        },
         markGameAsVictory = function() {
             game.maze.getFields().forEach(function(field) {
                 if (field.get('isBomb')) {
@@ -32,18 +35,21 @@ testDefine(['minesweeper/model/game', 'minesweeper/model/gametype'], function(Ga
 
         it('should mark game as victory when all bombs are flagged and all fields are displayed', function() {
             markGameAsVictory();
+            game.calculateStatus();
 
             expect(game.get('status')).toEqual('victory');
         });
 
         it('should mark game as defeat when a bomb is displayed and not flagged', function() {
             markGameAsDefeat();
+            game.calculateStatus();
 
             expect(game.get('status')).toEqual('defeat');
         });
 
         it('should mark game as in progress when not all the fields are displayed', function() {
             getFieldWithoutBomb().display();
+            game.calculateStatus();
 
             expect(game.get('status')).toEqual('in_progress');
         });
@@ -58,7 +64,7 @@ testDefine(['minesweeper/model/game', 'minesweeper/model/gametype'], function(Ga
         });
 
         it('should not display field when game is defeated', function() {
-            markGameAsDefeat();
+            game.set('status', 'defeat');
 
             var field = getFieldWithoutBomb();
             spyOn(field, 'display');
@@ -78,7 +84,7 @@ testDefine(['minesweeper/model/game', 'minesweeper/model/gametype'], function(Ga
         });
 
         it('should not flag field when game is defeated', function() {
-            markGameAsDefeat();
+            game.set('status', 'defeat');
 
             var field = getFieldWithoutBomb();
             spyOn(field, 'flag');
@@ -90,7 +96,8 @@ testDefine(['minesweeper/model/game', 'minesweeper/model/gametype'], function(Ga
 
         it('should display all bombs when one of the bombs displayed', function() {
             game.generate(new GameType({sizeX: 3, sizeY: 3,bombs: 2}));
-            markGameAsDefeat();
+
+            game.display(getFieldWithBomb());
 
             var bombsDisplayed = game.maze.getFields().where({isBomb: true, isDisplayed: true});
 

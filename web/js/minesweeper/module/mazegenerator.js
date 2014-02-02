@@ -1,6 +1,6 @@
 define(
-    ['../model/maze', '../model/game', 'socketio', '../event'],
-    function (MazeModel, GameModel, SocketIO, Event)
+    ['../model/maze', '../model/game', 'socketio', '../event', '../model/gametype'],
+    function (MazeModel, GameModel, SocketIO, Event, GameTypeModel)
 {
     "use strict";
     return function(application) {
@@ -9,6 +9,10 @@ define(
             MazeGenerator.game = game;
 
             Minesweeper.reqres.setHandler("new_game", function(gameType) {
+                if (!gameType) {
+                    gameType = new GameTypeModel({sizeX: 9, sizeY: 9, bombs: 10});
+                }
+
                 if (gameType.get('isRemote')) {
                     game.set('status', 'waiting');
                     socket.emit('join');
@@ -24,7 +28,7 @@ define(
                 MazeGenerator.socket = socket;
 
                 socket.on('game', function (mazeJSON) {
-                    game.maze.fromJSON(mazeJSON);
+                    game.generateFromJSON(mazeJSON);
                     game.set('status', 'in_progress');
                     game.set('type', 'remote');
                 });
@@ -41,7 +45,7 @@ define(
                     );
                 });
 
-                Event.on('display', function(field) {
+                game.on('display', function(field) {
                     if (game.get('type') !== 'remote') {
                         return;
                     }
@@ -49,7 +53,7 @@ define(
                     socket.emit('display', field.toJSON());
                 });
 
-                Event.on('flag', function(field) {
+                game.on('flag', function(field) {
                     if (game.get('type') !== 'remote') {
                         return;
                     }

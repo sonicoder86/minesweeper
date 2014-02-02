@@ -1,4 +1,4 @@
-define(['backbone', './maze', '../event'], function (Backbone, Maze, Event) {
+define(['backbone', './maze'], function (Backbone, Maze) {
     "use strict";
     return Backbone.Model.extend({
         defaults: {
@@ -10,15 +10,23 @@ define(['backbone', './maze', '../event'], function (Backbone, Maze, Event) {
         {
             this.maze = new Maze();
 
-            this.listenTo(this.maze.get('fields'), 'change', this.calculateStatus);
-            this.listenTo(this, 'change:status', this.updateElements);
+            this.listenTo(this, 'change:status', this.showRemainingBombs);
         },
 
         generate: function(gameType)
         {
-            this.maze.set({sizeX: gameType.get('sizeX'), sizeY: gameType.get('sizeY'), bombs: gameType.get('bombs')});
+            this.maze.set(gameType.getMazeFields());
             this.set('type', gameType.get('isRemote') ? 'remote' : 'local');
             this.maze.generate();
+            this.set('status', 'in_progress');
+            this.trigger('generate');
+        },
+
+        generateFromJSON: function(json)
+        {
+            this.maze.fromJSON(json);
+            this.trigger('generate');
+            this.set('status', 'in_progress');
         },
 
         calculateStatus: function()
@@ -35,7 +43,7 @@ define(['backbone', './maze', '../event'], function (Backbone, Maze, Event) {
             this.set('status', status);
         },
 
-        updateElements: function() {
+        showRemainingBombs: function() {
             if (this.isPlayable()) {
                 return;
             }
@@ -51,8 +59,9 @@ define(['backbone', './maze', '../event'], function (Backbone, Maze, Event) {
                 return;
             }
 
-            Event.trigger('display', field);
+            this.trigger('flag', field);
             this.maze.display(field);
+            this.calculateStatus();
         },
 
         flag: function(field)
@@ -61,8 +70,9 @@ define(['backbone', './maze', '../event'], function (Backbone, Maze, Event) {
                 return;
             }
 
-            Event.trigger('flag', field);
+            this.trigger('flag', field);
             this.maze.flag(field);
+            this.calculateStatus();
         },
 
         isPlayable: function()

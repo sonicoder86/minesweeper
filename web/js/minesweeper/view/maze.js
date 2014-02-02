@@ -1,12 +1,10 @@
 define(
-    ['marionette', './field', 'underscore', 'text!../template/maze.html'],
-    function (Marionette, fieldView, _, html
+    ['marionette', './field'],
+    function (Marionette, fieldView
 ) {
     "use strict";
-    return Marionette.CompositeView.extend({
+    return Marionette.CollectionView.extend({
         itemView: fieldView,
-        template: _.template(html),
-        className: 'row',
-        itemViewContainer: '.js-minesweeper'
+        className: 'row'
     });
 });

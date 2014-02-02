@@ -24,15 +24,5 @@ define(['minesweeper/application', 'minesweeper/module/game', 'minesweeper/model
 
             expect(gameModule.layoutView.model).toEqual(game);
         });
-
-        it('should show game layout on start', function() {
-            var shown = false;
-            gameModule.layoutView.on('show', function() {
-                shown = true;
-            });
-            gameModule.start();
-
-            expect(shown).toEqual(true);
-        });
     });
 });
