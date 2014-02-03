@@ -48,7 +48,7 @@ define(
         it('should display new percent when field displayed', function() {
             view.render();
             view.onShow();
-            maze.getField(0, 0).flag();
+            game.flag(maze.getField(0, 0));
 
             expect(view.ui.percentContainer.text()).toEqual('11 %');
         });

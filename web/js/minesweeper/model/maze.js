@@ -12,13 +12,27 @@ define(
 
         initialize: function()
         {
+            this.resetCache();
             this.set({fields: new FieldCollection()}, {silent: true});
+        },
+
+        resetCache: function() {
+            this.fieldsCache = {};
         },
 
         generate: function()
         {
             this.generateFields();
+            this.buildCache();
             this.placeBombs();
+        },
+
+        buildCache: function() {
+            this.resetCache();
+
+            this.getFields().forEach(function(field) {
+                this.fieldsCache[field.get('x')+'-'+field.get('y')] = field;
+            }, this);
         },
 
         getFields: function()
@@ -54,7 +68,7 @@ define(
                     continue;
                 }
 
-                field.set('isBomb', true);
+                field.set({isBomb: true}, {silent: true});
                 i += 1;
 
                 this.getNeighbours(field).forEach(function(neighbour) {
@@ -65,7 +79,7 @@ define(
         },
 
         incrementBombsNear: function(field) {
-            field.set('bombsNear', field.get('bombsNear') + 1);
+            field.set({bombsNear: field.get('bombsNear') + 1}, {silent: true});
         },
 
         getRandomField: function()
@@ -77,18 +91,19 @@ define(
 
         getField: function(x, y)
         {
-            return this.getFields().findWhere({x: x, y: y});
+            return this.fieldsCache[x+'-'+y];
+            //return this.getFields().findWhere({x: x, y: y});
         },
 
         getNeighbours: function(field)
         {
-            var neighbours = new FieldCollection(),
+            var neighbours = [],
                 possibleNeighbours = field.getPossibleNeighbours();
 
-            _.forEach(possibleNeighbours, function(possibleNeighbour) {
+            possibleNeighbours.forEach(function(possibleNeighbour) {
                 var neighbour = this.getField(possibleNeighbour.x, possibleNeighbour.y);
                 if (neighbour) {
-                    neighbours.add(neighbour);
+                    neighbours.push(neighbour);
                 }
             }, this);
 
@@ -153,6 +168,7 @@ define(
         {
             this.set({sizeX: json.sizeX, sizeY: json.sizeY, bombs: json.bombs});
             this.getFields().reset(json.fields);
+            this.buildCache();
         },
 
         getSizeCount: function() {

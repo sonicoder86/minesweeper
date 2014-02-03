@@ -29,20 +29,14 @@ define(
 
                 socket.on('game', function (mazeJSON) {
                     game.generateFromJSON(mazeJSON);
-                    game.set('status', 'in_progress');
-                    game.set('type', 'remote');
                 });
 
                 socket.on('display', function (field) {
-                    game.maze.display(
-                        game.maze.getField(field.x, field.y)
-                    );
+                    game.displayRemote(field);
                 });
 
                 socket.on('flag', function (field) {
-                    game.maze.flag(
-                        game.maze.getField(field.x, field.y)
-                    );
+                    game.flagRemote(field);
                 });
 
                 game.on('display', function(field) {

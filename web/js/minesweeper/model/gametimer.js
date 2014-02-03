@@ -17,7 +17,11 @@ define(['backbone', 'underscore', './timer'], function (Backbone, _, TimerModel)
                 this.timer.stop();
             });
 
-            this.listenTo(this.game, 'display, flag', function() {
+            this.listenTo(this.game, 'flag', function() {
+                this.timer.start();
+            });
+
+            this.listenTo(this.game, 'display', function() {
                 this.timer.start();
             });
 

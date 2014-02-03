@@ -17,7 +17,9 @@ define(['backbone', './maze'], function (Backbone, Maze) {
         {
             this.maze.set(gameType.getMazeFields());
             this.set('type', gameType.get('isRemote') ? 'remote' : 'local');
+
             this.maze.generate();
+
             this.set('status', 'in_progress');
             this.trigger('generate');
         },
@@ -25,8 +27,9 @@ define(['backbone', './maze'], function (Backbone, Maze) {
         generateFromJSON: function(json)
         {
             this.maze.fromJSON(json);
-            this.trigger('generate');
             this.set('status', 'in_progress');
+            this.set('type', 'remote');
+            this.trigger('generate');
         },
 
         calculateStatus: function()
@@ -41,6 +44,7 @@ define(['backbone', './maze'], function (Backbone, Maze) {
             }
 
             this.set('status', status);
+            this.trigger('calculate');
         },
 
         showRemainingBombs: function() {
@@ -59,8 +63,15 @@ define(['backbone', './maze'], function (Backbone, Maze) {
                 return;
             }
 
-            this.trigger('flag', field);
             this.maze.display(field);
+            this.calculateStatus();
+            this.trigger('display', field);
+        },
+
+        displayRemote: function(field) {
+            this.maze.display(
+                this.maze.getField(field.x, field.y)
+            );
             this.calculateStatus();
         },
 
@@ -70,8 +81,15 @@ define(['backbone', './maze'], function (Backbone, Maze) {
                 return;
             }
 
-            this.trigger('flag', field);
             this.maze.flag(field);
+            this.calculateStatus();
+            this.trigger('flag', field);
+        },
+
+        flagRemote: function(field) {
+            this.maze.flag(
+                this.maze.getField(field.x, field.y)
+            );
             this.calculateStatus();
         },
 

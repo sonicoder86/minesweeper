@@ -1,5 +1,7 @@
-define(['backbone', 'underscore'], function (Backbone, _) {
+define(['backbone'], function (Backbone) {
     "use strict";
+    var neighbourCoordinates = [-1, 0, 1];
+
     return Backbone.Model.extend({
         defaults: {
             x: 0,
@@ -16,8 +18,8 @@ define(['backbone', 'underscore'], function (Backbone, _) {
                 x = this.get('x'),
                 y = this.get('y');
 
-            _.forEach([-1, 0, 1], function(offsetX) {
-                _.forEach([-1, 0, 1], function(offsetY) {
+            neighbourCoordinates.forEach(function(offsetX) {
+                neighbourCoordinates.forEach(function(offsetY) {
                     if (offsetY === 0 && offsetX === 0) {
                         return;
                     }
