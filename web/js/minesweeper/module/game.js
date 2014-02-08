@@ -1,5 +1,5 @@
 define(
-    ['marionette', '../view/maze', '../view/status', '../view/game', '../model/gametimer'],
+    ['marionette', '../view/maze', '../view/status', '../view/game', '../model/gametimer', '../model/gametimer'],
     function (Marionette, MazeView, StatusView, GameLayout, GameTimer)
 {
     "use strict";
@@ -11,7 +11,7 @@ define(
                 var game = Minesweeper.request('new_game');
                 this.timer = new GameTimer({game: game});
 
-                Game.layoutView.initializeGame(game);
+                Game.layoutView.initializeGame(game, this.timer);
 
                 Game.layoutView.render();
             });

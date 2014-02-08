@@ -18,10 +18,18 @@ define(['backbone', 'underscore', './timer'], function (Backbone, _, TimerModel)
             });
 
             this.listenTo(this.game, 'flag', function() {
+                if (!this.game.isPlayable()) {
+                    return;
+                }
+
                 this.timer.start();
             });
 
             this.listenTo(this.game, 'display', function() {
+                if (!this.game.isPlayable()) {
+                    return;
+                }
+
                 this.timer.start();
             });
 
