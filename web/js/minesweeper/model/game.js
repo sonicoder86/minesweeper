@@ -18,6 +18,10 @@ define(['backbone', './maze'], function (Backbone, Maze) {
             this.maze.set(gameType.getMazeFields());
             this.set('type', gameType.get('isRemote') ? 'remote' : 'local');
 
+            this.start();
+        },
+
+        start: function() {
             this.maze.generate();
 
             this.set('status', 'in_progress');
@@ -95,7 +99,7 @@ define(['backbone', './maze'], function (Backbone, Maze) {
 
         isPlayable: function()
         {
-            return this.get('status') !== 'defeat';
+            return this.get('status') !== 'defeat' && this.get('status') !== 'victory';
         }
     });
 });

@@ -22,7 +22,7 @@ define(
         it('should display current status', function() {
             view.render();
 
-            expect(view.ui.statusContainer.text()).toEqual('in_progress');
+            expect(view.ui.statusContainer.text()).toEqual('In progress');
         });
 
         it('should display new status when status change', function() {
@@ -30,13 +30,7 @@ define(
             view.onShow();
             game.set('status', 'defeat');
 
-            expect(view.ui.statusContainer.text()).toEqual('defeat');
-        });
-
-        it('should display flags left', function() {
-            view.render();
-
-            expect(view.ui.flagsContainer.text()).toEqual('1');
+            expect(view.ui.statusContainer.text()).toEqual('Defeat');
         });
 
         it('should display percent completed', function() {

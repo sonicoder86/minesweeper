@@ -14,6 +14,7 @@ define(
         {
             this.listenTo(this, 'itemview:new_game', function(gameTypeView) {
                 this.trigger('new_game', gameTypeView.model);
+                this.$el.find('.dropdown-menu').dropdown('toggle');
             });
         }
     });

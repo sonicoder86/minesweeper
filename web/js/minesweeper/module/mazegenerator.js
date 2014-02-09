@@ -1,6 +1,6 @@
 define(
     ['../model/maze', '../model/game', 'socketio', '../event', '../model/gametype'],
-    function (MazeModel, GameModel, SocketIO, Event, GameTypeModel)
+    function (MazeModel, GameModel, SocketIO, Events, GameTypeModel)
 {
     "use strict";
     return function(application) {
@@ -24,6 +24,10 @@ define(
             });
 
             MazeGenerator.on('start', function() {
+                Events.on('restart', function () {
+                    game.start();
+                });
+
                 socket = SocketIO.connect();
                 MazeGenerator.socket = socket;
 

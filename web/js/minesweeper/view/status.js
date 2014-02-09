@@ -1,5 +1,13 @@
 define(['marionette', 'underscore', 'text!../template/status.html'], function (Marionette, _, html) {
     "use strict";
+    var statusConversion = {
+        victory: 'Victory',
+        defeat: 'Defeat'
+    };
+
+    /*jshint sub:true */
+    statusConversion['in_progress'] = 'In progress';
+
     return Marionette.ItemView.extend({
         template: _.template(html),
         className: 'status-wrapper',
@@ -23,6 +31,7 @@ define(['marionette', 'underscore', 'text!../template/status.html'], function (M
 
             modelProperties.flagsLeft = maze.getFlagsLeft();
             modelProperties.percentCompleted = maze.getCompletePercent();
+            modelProperties.statusDisplay = statusConversion[modelProperties.status];
 
             return modelProperties;
         }
