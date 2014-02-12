@@ -1,6 +1,6 @@
 {
     "name": "Minesweeper",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "author": "Blacksonic <soos.gabor86@gmail.com>",
     "description": "Minesweeper game built with Backbone, code shared between client and server",
     "repository": {

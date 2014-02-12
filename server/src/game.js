@@ -6,7 +6,7 @@ var req = require('../requiresetup').requirejs,
 var gameSocket = function(socket, room) {
     this.socket = socket;
     this.room = room;
-    _.bindAll(this, 'join', 'display', 'flag', 'disconnect');
+    _.bindAll(this, 'join', 'display', 'flag', 'disconnect', 'restart');
 };
 
 gameSocket.prototype.bindEventHandlers = function() {
@@ -14,6 +14,7 @@ gameSocket.prototype.bindEventHandlers = function() {
     this.socket.on('display', this.display);
     this.socket.on('flag', this.flag);
     this.socket.on('leave', this.leave);
+    this.socket.on('restart', this.restart);
     this.socket.on('disconnect', this.disconnect);
 };
 
@@ -61,6 +62,14 @@ gameSocket.prototype.disconnect = function() {
 gameSocket.prototype.leave = function() {
     this.room.remove(this.socket.id);
     console.log(this.socket.id+" left");
+};
+
+gameSocket.prototype.restart = function() {
+    console.log(this.socket.id+" restart");
+    var roomId = this.room.getRoom(this.socket.id);
+    if (this.room.isRoomReady(roomId)) {
+        this.startGame(roomId);
+    }
 };
 
 exports.gameSocket = gameSocket;

@@ -24,12 +24,17 @@ define(
             });
 
             MazeGenerator.on('start', function() {
-                Events.on('restart', function () {
-                    game.start();
-                });
-
                 socket = SocketIO.connect();
                 MazeGenerator.socket = socket;
+
+                Events.on('restart', function () {
+                    if (game.get('type') === 'remote') {
+                        socket.emit('restart');
+                    }
+                    else {
+                        game.start();
+                    }
+                });
 
                 socket.on('game', function (mazeJSON) {
                     game.generateFromJSON(mazeJSON);
@@ -37,10 +42,12 @@ define(
 
                 socket.on('display', function (field) {
                     game.displayRemote(field);
+                    Events.trigger('timer:start');
                 });
 
                 socket.on('flag', function (field) {
                     game.flagRemote(field);
+                    Events.trigger('timer:start');
                 });
 
                 game.on('display', function(field) {

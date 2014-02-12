@@ -1,4 +1,4 @@
-define(['backbone', 'underscore', './timer'], function (Backbone, _, TimerModel) {
+define(['backbone', 'underscore', './timer', '../event'], function (Backbone, _, TimerModel, Event) {
     "use strict";
     return Backbone.Model.extend({
         initialize: function(options) {
@@ -30,6 +30,10 @@ define(['backbone', 'underscore', './timer'], function (Backbone, _, TimerModel)
                     return;
                 }
 
+                this.timer.start();
+            });
+
+            this.listenTo(Event, 'timer:start', function() {
                 this.timer.start();
             });
 
