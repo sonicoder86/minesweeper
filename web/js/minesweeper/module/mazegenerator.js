@@ -19,7 +19,9 @@ define(
                     return game;
                 }
 
+                console.profile('refakt');
                 game.generate(gameType);
+                console.profileEnd();
                 return game;
             });
 

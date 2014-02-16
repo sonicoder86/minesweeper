@@ -22,7 +22,7 @@ define(['marionette', 'underscore', 'text!../template/timer.html', '../event'], 
         serializeData: function() {
             return {
                 time: this.model.format(),
-                isHappy: this.game.isPlayable()
+                isHappy: this.game.get('status') !== 'defeat'
             };
         }
     });

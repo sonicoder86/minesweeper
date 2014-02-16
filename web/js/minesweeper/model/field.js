@@ -15,8 +15,8 @@ define(['backbone'], function (Backbone) {
         getPossibleNeighbours: function()
         {
             var neighbours = [],
-                x = this.get('x'),
-                y = this.get('y');
+                x = this.attributes.x,
+                y = this.attributes.y;
 
             neighbourCoordinates.forEach(function(offsetX) {
                 neighbourCoordinates.forEach(function(offsetY) {

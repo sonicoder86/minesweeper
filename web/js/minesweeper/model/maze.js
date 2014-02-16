@@ -22,8 +22,8 @@ define(
 
         generate: function()
         {
+            this.resetCache();
             this.generateFields();
-            this.buildCache();
             this.placeBombs();
         },
 
@@ -31,7 +31,7 @@ define(
             this.resetCache();
 
             this.getFields().forEach(function(field) {
-                this.fieldsCache[field.get('x')+'-'+field.get('y')] = field;
+                this.fieldsCache[field.attributes.x+'-'+field.attributes.y] = field;
             }, this);
         },
 
@@ -45,11 +45,12 @@ define(
             var fields = [],
                 i, j, field;
 
-            for (i = 0; i < this.get('sizeX'); i += 1) {
-                for (j = 0; j < this.get('sizeY'); j += 1) {
+            for (i = 0; i < this.attributes.sizeX; i += 1) {
+                for (j = 0; j < this.attributes.sizeY; j += 1) {
                     field = new FieldModel({x: i, y: j});
 
                     fields.push(field);
+                    this.fieldsCache[field.attributes.x+'-'+field.attributes.y] = field;
                 }
             }
 
@@ -58,17 +59,17 @@ define(
 
         placeBombs: function()
         {
-            var bombs = this.get('bombs'),
+            var bombs = this.attributes.bombs,
                 i, field;
 
             for (i = 0; i < bombs;) {
                 field = this.getRandomField();
 
-                if (field.get('isBomb')) {
+                if (field.attributes.isBomb) {
                     continue;
                 }
 
-                field.set({isBomb: true}, {silent: true});
+                field.attributes.isBomb = true;
                 i += 1;
 
                 this.getNeighbours(field).forEach(function(neighbour) {
@@ -79,20 +80,19 @@ define(
         },
 
         incrementBombsNear: function(field) {
-            field.set({bombsNear: field.get('bombsNear') + 1}, {silent: true});
+            field.attributes.bombsNear += 1;
         },
 
         getRandomField: function()
         {
-            var randomX = Math.floor(Math.random() * this.get('sizeX')),
-                randomY = Math.floor(Math.random() * this.get('sizeY'));
+            var randomX = Math.floor(Math.random() * this.attributes.sizeX),
+                randomY = Math.floor(Math.random() * this.attributes.sizeY);
             return this.getField(randomX, randomY);
         },
 
         getField: function(x, y)
         {
             return this.fieldsCache[x+'-'+y];
-            //return this.getFields().findWhere({x: x, y: y});
         },
 
         getNeighbours: function(field)

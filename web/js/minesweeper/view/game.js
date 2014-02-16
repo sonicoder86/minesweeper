@@ -25,14 +25,15 @@ function (Marionette, _, html, MazeView, StatusView, WaitingView, TimerView) {
 
         createMaze: function() {
             this.mazeView = new MazeView({
+                maze: this.model.maze,
                 collection: this.model.maze.getFields()
             });
 
-            this.listenTo(this.mazeView, 'itemview:display', function(view) {
-                this.model.display(view.model);
+            this.listenTo(this.mazeView, 'display', function(model) {
+                this.model.display(model);
             });
-            this.listenTo(this.mazeView, 'itemview:flag', function(view) {
-                this.model.flag(view.model);
+            this.listenTo(this.mazeView, 'flag', function(model) {
+                this.model.flag(model);
             });
         },
 
