@@ -2,7 +2,7 @@ requirejs.config({
     baseUrl: 'js',
     urlArgs: "bust=" + (new Date()).getTime(),
     paths: {
-        jquery: 'lib/jquery/jquery',
+        jquery: 'lib/jquery/dist/jquery',
         underscore: 'lib/lodash/dist/lodash',
         backbone: 'lib/backbone/backbone',
         marionette: 'lib/backbone.marionette/lib/backbone.marionette',
