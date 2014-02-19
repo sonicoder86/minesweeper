@@ -5,24 +5,15 @@ requirejs.config({
         jquery: 'lib/jquery/dist/jquery',
         underscore: 'lib/lodash/dist/lodash',
         backbone: 'lib/backbone/backbone',
-        marionette: 'lib/backbone.marionette/lib/backbone.marionette',
+        marionette: 'lib/backbone.marionette/lib/core/amd/backbone.marionette',
+        "backbone.wreqr": 'lib/backbone.wreqr/lib/amd/backbone.wreqr',
+        "backbone.babysitter": 'lib/backbone.babysitter/lib/amd/backbone.babysitter',
         text: 'lib/requirejs-text/text',
         bootstrap: 'lib/bootstrap/dist/js/bootstrap',
         socketio: 'lib/socket.io-client/dist/socket.io'
     },
 
     shim: {
-        underscore: {
-            exports: '_'
-        },
-        backbone: {
-            deps: ['underscore', 'jquery'],
-            exports: 'Backbone'
-        },
-        marionette: {
-            deps: ['backbone'],
-            exports: 'Backbone.Marionette'
-        },
         bootstrap: {
             deps: ['jquery']
         }
