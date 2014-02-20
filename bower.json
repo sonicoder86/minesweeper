@@ -16,7 +16,8 @@
     "jasmine": "~1.3",
     "font-mfizz": "~2.0.0",
     "prefix-free": "gh-pages",
-    "font-awesome": "~4.0.3"
+    "font-awesome": "~4.0.3",
+    "almond": "~0.2"
   },
   "license": "MIT",
   "ignore": [

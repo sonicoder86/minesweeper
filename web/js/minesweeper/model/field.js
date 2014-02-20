@@ -1,8 +1,21 @@
-define(['backbone'], function (Backbone) {
+define(['backbone', 'underscore'], function (Backbone, _) {
     "use strict";
-    var neighbourCoordinates = [-1, 0, 1];
+    var neighbourCoordinates = [-1, 0, 1],
+    FieldConstructor = function(options) {
+        this.attributes = {
+            isBomb: false,
+            isDisplayed: false,
+            isFlagged: false,
+            bombsNear: 0
+        };
 
-    return Backbone.Model.extend({
+        this.attributes.x = options.x;
+        this.attributes.y = options.y;
+
+        this.changed = {};
+        this.cid = _.uniqueId('c');
+    },
+    FieldModel = Backbone.Model.extend({
         defaults: {
             x: 0,
             y: 0,
@@ -70,4 +83,7 @@ define(['backbone'], function (Backbone) {
             this.set({isDisplayed: false, isFlagged: false});
         }
     });
+
+    FieldConstructor.prototype = FieldModel.prototype;
+    return FieldConstructor;
 });
