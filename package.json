@@ -2,7 +2,7 @@
     "name": "Minesweeper",
     "version": "1.0.0",
     "author": "Blacksonic <soos.gabor86@gmail.com>",
-    "description": "Minesweeper game built with Backbone, code shared between client and server",
+    "description": "Minesweeper game built with isomorphic Javascript",
     "repository": {
         "type": "git",
         "url": "https://github.com/blacksonic/minesweeper.git"
@@ -43,7 +43,7 @@
         "grunt-mocha-test": "~0.10",
         "grunt-jasmine-node": "~0.1",
         "grunt-bower-task": "~0.3",
-        "grunt-karma": "git://github.com/karma-runner/grunt-karma.git",
+        "grunt-karma": "~0.8",
         "grunt-contrib-cssmin": "~0.9"
     },
 
