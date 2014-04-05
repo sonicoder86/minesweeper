@@ -1,4 +1,4 @@
-# Minesweeper [![Build Status](https://travis-ci.org/blacksonic/minesweeper.png?branch=master)](https://travis-ci.org/blacksonic/minesweeper) #
+# Minesweeper [![Build Status](https://travis-ci.org/blacksonic/minesweeper.png?branch=master)](https://travis-ci.org/blacksonic/minesweeper) [![Dependencies](https://david-dm.org/blacksonic/minesweeper)](https://david-dm.org/blacksonic/minesweeper.png) #
 
 Play the well known minesweeper game in the original manner, or play it with Your friends!
 This project aims is to prove, that it's code and tests can be shared between multiple environments without modifications.
