@@ -1,29 +1,29 @@
 {
-  "name": "minesweeper",
-  "version": "0.1.0",
-  "homepage": "https://github.com/blacksonic/minesweeper",
-  "authors": [
-    "blacksonic <soos.gabor86@gmail.com>"
-  ],
-  "dependencies": {
-    "jquery": "~1.11",
-    "lodash": "~2.4",
-    "backbone.marionette": "~1.6",
-    "bootstrap": "~3.1",
-    "requirejs": "~2.1",
-    "requirejs-text": "~2.0",
-    "socket.io-client": "~0.9",
-    "jasmine": "~1.3",
-    "font-mfizz": "~2.0.0",
-    "prefix-free": "gh-pages",
-    "font-awesome": "~4.0.3",
-    "almond": "~0.2"
-  },
-  "license": "MIT",
-  "ignore": [
-    "node_modules",
-    "bower_components",
-    "server",
-    "tests"
-  ]
+    "name": "Minesweeper",
+    "version": "1.0.0",
+    "homepage": "https://github.com/blacksonic/minesweeper",
+    "author": "Blacksonic <soos.gabor86@gmail.com>",
+    "description": "Minesweeper game built with isomorphic Javascript",
+    "dependencies": {
+        "jquery": "~1.11",
+        "jquery-2": "jquery#~2.1",
+        "lodash": "~2.4",
+        "backbone.marionette": "~1.6",
+        "bootstrap": "~3.1",
+        "requirejs": "~2.1",
+        "requirejs-text": "~2.0",
+        "socket.io-client": "~0.9",
+        "jasmine": "~1.3",
+        "font-mfizz": "~2.0.0",
+        "prefix-free": "gh-pages",
+        "font-awesome": "~4.0.3",
+        "almond": "~0.2"
+    },
+    "license": "MIT",
+    "ignore": [
+        "node_modules",
+        "bower_components",
+        "server",
+        "tests"
+    ]
 }
