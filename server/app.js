@@ -1,5 +1,7 @@
 "use strict";
 var express = require('express'),
+    errorHandler = require('errorhandler'),
+    favicon = require('static-favicon'),
     index = require('./routes/index'),
     http = require('http'),
     path = require('path'),
@@ -10,20 +12,13 @@ var app = express(),
     io = socketIO.listen(server);
 io.set('log level', 0);
 
-app.configure(function(){
-    app.set('port', process.env.PORT || 3000);
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'ejs');
-    app.use(express.favicon(__dirname + '/../web/favicon.ico'));
-    app.use(app.router);
-    app.use(express.static(path.join(__dirname, '../web')));
-    app.use(express.static(path.join(__dirname, '../tests')));
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-
-app.configure('development', function(){
-    app.use(express.errorHandler());
-});
+app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.use(favicon(__dirname + '/../web/favicon.ico'));
+app.use(express.static(path.join(__dirname, '../web')));
+app.use(express.static(path.join(__dirname, '../tests')));
+app.use(errorHandler({ dumpExceptions: true, showStack: true }));
 
 app.get('/', index.index);
 app.get('/dev', index.devIndex);
