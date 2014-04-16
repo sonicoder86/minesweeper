@@ -46,9 +46,13 @@ module.exports = function(grunt) {
             }
         },
         jasmine_node: {
-            specFolders: ['tests/minesweeper/model'],
-            projectRoot: "web/js/minesweeper",
-            requirejs: "tests/lib/requireconfig/node.js"
+            options: {
+                specFolders: ['tests/minesweeper/model'],
+                projectRoot: "web/js/minesweeper",
+                useRequireJs: "tests/lib/requireconfig/node.js",
+                verbose: false
+            },
+            all: ['tests/minesweeper/model']
         },
         karma: {
             options: {

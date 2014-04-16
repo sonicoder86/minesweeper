@@ -45,7 +45,7 @@
         "grunt-contrib-jshint": "~0.10",
         "grunt-contrib-requirejs": "~0.4",
         "grunt-mocha-test": "~0.10",
-        "grunt-jasmine-node": "~0.1",
+        "grunt-jasmine-node": "~0.2",
         "grunt-bower-task": "~0.3",
         "grunt-karma": "~0.8",
         "grunt-contrib-cssmin": "~0.9"
