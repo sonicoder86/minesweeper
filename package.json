@@ -52,7 +52,7 @@
     },
 
     "scripts": {
-        "test": "grunt test",
-        "start": "node_modules/.bin/bower install && node server/app.js"
+        "test": "node_modules/.bin/grunt test",
+        "start": "node_modules/.bin/grunt start && node server/app.js"
     }
 }

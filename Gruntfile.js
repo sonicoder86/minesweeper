@@ -91,4 +91,5 @@ module.exports = function(grunt) {
     // Default task.
     grunt.registerTask('default', ['test']);
     grunt.registerTask('minify', ['requirejs', 'cssmin']);
+    grunt.registerTask('start', ['bower', 'minify']);
 };
