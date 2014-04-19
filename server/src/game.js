@@ -42,24 +42,11 @@ gameSocket.prototype.startGame = function(roomId) {
     console.log(this.socket.id+" started the game");
 };
 
-gameSocket.prototype.display = function(field) {
-    var roomId = this.room.getRoom(this.socket.id);
-    this.socket.broadcast.to('room_'+roomId).emit('display', field);
-    console.log(this.socket.id+" displays field "+field.x+" "+field.y);
-};
+gameSocket.prototype.display = transmitEvent('display');
 
-gameSocket.prototype.flag = function(field) {
-    var roomId = this.room.getRoom(this.socket.id);
-    this.socket.broadcast.to('room_'+roomId).emit('flag', field);
-    console.log(this.socket.id+" flags field "+field.x+" "+field.y);
-};
+gameSocket.prototype.flag = transmitEvent('flag');
 
-gameSocket.prototype.disconnect = function() {
-    this.room.remove(this.socket.id);
-    console.log(this.socket.id+" disconnected");
-};
-
-gameSocket.prototype.leave = function() {
+gameSocket.prototype.leave = gameSocket.prototype.disconnect = function() {
     this.room.remove(this.socket.id);
     console.log(this.socket.id+" left");
 };
@@ -71,5 +58,13 @@ gameSocket.prototype.restart = function() {
         this.startGame(roomId);
     }
 };
+
+function transmitEvent (eventType) {
+    return function(field) {
+        var roomId = this.room.getRoom(this.socket.id);
+        this.socket.broadcast.to('room_'+roomId).emit(eventType, field);
+        console.log(this.socket.id + " " + eventType + "s field " + field.x + " " + field.y);
+    };
+}
 
 exports.gameSocket = gameSocket;

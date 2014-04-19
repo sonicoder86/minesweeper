@@ -1,4 +1,6 @@
-# Minesweeper [![Build Status](https://travis-ci.org/blacksonic/minesweeper.png?branch=master)](https://travis-ci.org/blacksonic/minesweeper) [![Dependency Status](https://david-dm.org/blacksonic/minesweeper.svg)](https://david-dm.org/blacksonic/minesweeper) [![Code Climate](https://codeclimate.com/github/blacksonic/minesweeper.png)](https://codeclimate.com/github/blacksonic/minesweeper) #
+# Minesweeper #
+
+[![Build Status](https://travis-ci.org/blacksonic/minesweeper.png?branch=master)](https://travis-ci.org/blacksonic/minesweeper) [![Dependency Status](https://david-dm.org/blacksonic/minesweeper.svg)](https://david-dm.org/blacksonic/minesweeper) [![Code Climate](https://codeclimate.com/github/blacksonic/minesweeper.png)](https://codeclimate.com/github/blacksonic/minesweeper)
 
 Play the well known minesweeper game in the original manner, or play it with your friends!
 This project proves that it's isomorphic code and tests can be run in multiple environments without modifications.
