@@ -74,6 +74,13 @@ module.exports = function(grunt) {
                     install: true
                 }
             }
+        },
+        forever: {
+            server: {
+                options: {
+                    index: 'server/app.js'
+                }
+            }
         }
     });
 
@@ -84,6 +91,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-forever');
 
     grunt.registerTask('mocha', ['mochaTest']);
     grunt.registerTask('test', ['bower', 'jshint', 'karma:continous', 'mocha', 'jasmine_node']);
@@ -91,5 +99,6 @@ module.exports = function(grunt) {
     // Default task.
     grunt.registerTask('default', ['test']);
     grunt.registerTask('minify', ['requirejs', 'cssmin']);
-    grunt.registerTask('start', ['bower', 'minify']);
+    grunt.registerTask('start', ['bower', 'minify', 'forever:server:start']);
+    grunt.registerTask('stop', ['forever:server:stop']);
 };

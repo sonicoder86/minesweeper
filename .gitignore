@@ -2,3 +2,4 @@
 node_modules/*
 web/js/lib/*
 npm-debug.log
+forever/*.log
