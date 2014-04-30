@@ -49,6 +49,6 @@
   },
   "scripts": {
     "test": "node_modules/.bin/grunt test",
-    "start": "node_modules/.bin/grunt start && node server/app.js"
+    "start": "node_modules/.bin/grunt start"
   }
 }
