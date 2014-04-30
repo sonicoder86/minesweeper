@@ -24,9 +24,9 @@
     "socket.io": "~0.9",
     "forever": "^0.11.1",
     "grunt": "~0.4",
-    "grunt-forever": "^0.4.4"
-  },
-  "devDependencies": {
+    "grunt-cli": "~0.1",
+    "grunt-forever": "^0.4.4",
+
     "karma": "~0.12",
     "karma-jasmine": "~0.1",
     "karma-requirejs": "~0.2",
@@ -48,7 +48,8 @@
     "grunt-contrib-cssmin": "~0.9"
   },
   "scripts": {
-    "test": "node_modules/.bin/grunt test",
-    "start": "node_modules/.bin/grunt start"
+    "test": "./node_modules/.bin/grunt test",
+    "start": "./node_modules/.bin/grunt start",
+    "postinstall": "./node_modules/.bin/grunt install"
   }
 }

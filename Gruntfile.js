@@ -99,6 +99,7 @@ module.exports = function(grunt) {
     // Default task.
     grunt.registerTask('default', ['test']);
     grunt.registerTask('minify', ['requirejs', 'cssmin']);
-    grunt.registerTask('start', ['bower', 'minify', 'forever:server:start']);
+    grunt.registerTask('install', ['bower', 'minify']);
+    grunt.registerTask('start', ['forever:server:start']);
     grunt.registerTask('stop', ['forever:server:stop']);
 };
