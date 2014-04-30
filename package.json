@@ -49,7 +49,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/grunt test",
-    "start": "./node_modules/.bin/grunt start",
+    "start": "node ./server/app.js",
     "postinstall": "./node_modules/.bin/grunt install"
   }
 }
