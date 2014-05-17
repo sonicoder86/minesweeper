@@ -37,22 +37,24 @@ module.exports = function(grunt) {
                 }
             }
         },
-        mochaTest: {
-            options: {
-                reporter: 'spec'
-            },
-            test: {
-                src: ['tests/server/**/*.js']
-            }
-        },
         jasmine_node: {
             options: {
-                specFolders: ['tests/minesweeper/model'],
-                projectRoot: "web/js/minesweeper",
-                useRequireJs: "tests/lib/requireconfig/node.js",
                 verbose: false
             },
-            all: ['tests/minesweeper/model']
+            client: {
+                options: {
+                    specFolders: ['tests/minesweeper/model'],
+                    projectRoot: "web/js/minesweeper",
+                    useRequireJs: "tests/lib/requireconfig/node.js"
+                },
+                all: ['tests/minesweeper/model']
+            },
+            server: {
+                options: {
+                    specFolders: ['tests/server']
+                },
+                all: ['tests/server']
+            }
         },
         karma: {
             options: {
@@ -87,16 +89,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-forever');
 
-    grunt.registerTask('mocha', ['mochaTest']);
-    grunt.registerTask('test', ['bower', 'jshint', 'karma:continous', 'mocha', 'jasmine_node']);
+    grunt.registerTask('test', ['jshint', 'karma:continous', 'jasmine_node']);
 
-    // Default task.
     grunt.registerTask('default', ['test']);
     grunt.registerTask('minify', ['requirejs', 'cssmin']);
     grunt.registerTask('install', ['bower', 'minify']);

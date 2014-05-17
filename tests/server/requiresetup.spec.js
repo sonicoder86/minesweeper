@@ -1,14 +1,14 @@
-var chaiExpect = require('chai').expect,
-    requireJs = require('../../server/requiresetup');
+var requireJs = require(__dirname+'/../../server/requiresetup');
 
 describe('requirejssetup', function() {
     "use strict";
     it('should requirejs as function defined', function() {
-        chaiExpect(requireJs.requirejs).to.be.a('function');
+        expect(requireJs.requirejs).toBeDefined();
     });
 
     it('should require given dependency', function() {
-        var maze = requireJs.requirejs('minesweeper/model/maze');
-        chaiExpect(maze).to.be.a('function');
+        var Maze = requireJs.requirejs('minesweeper/model/maze');
+        expect(requireJs.requirejs).toBeTruthy(Maze);
+        expect(requireJs.requirejs).toBeTruthy(new Maze());
     });
 });
