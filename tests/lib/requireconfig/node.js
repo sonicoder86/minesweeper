@@ -12,25 +12,8 @@
  */
 var define,
     requirejs = require('requirejs'),
-    fs   = require('fs');
+    setupLibraries = require(process.cwd()+'/server/requirejs/libraries').setup;
 
-fs.readFileSync(process.cwd()+'/web/js/minesweeper/requireconfig.js');
-
-requirejs.config({
-    baseUrl: process.cwd()+'/web/js',
-    urlArgs: null
-});
-
-requirejs.define('jquery', function() {
-    return require('jquery');
-});
-
-requirejs.define('underscore', function() {
-    return require('underscore');
-});
-
-requirejs.define('backbone', function() {
-    return require('backbone');
-});
+setupLibraries(requirejs);
 
 define = requirejs.define;
