@@ -1,4 +1,4 @@
-var requireJs = require(__dirname+'/../../server/requiresetup');
+var requireJs = require(__dirname+'/../../server/requirejs/setup');
 
 describe('requirejssetup', function() {
     "use strict";

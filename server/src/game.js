@@ -1,5 +1,5 @@
 "use strict";
-var req = require('../requiresetup').requirejs,
+var req = require('../requirejs/setup').requirejs,
     mazeModel = req('minesweeper/model/maze'),
     _ = require('underscore');
 
@@ -42,6 +42,14 @@ gameSocket.prototype.startGame = function(roomId) {
     console.log(this.socket.id+" started the game");
 };
 
+function transmitEvent (eventType) {
+    return function(field) {
+        var roomId = this.room.getRoom(this.socket.id);
+        this.socket.broadcast.to('room_'+roomId).emit(eventType, field);
+        console.log(this.socket.id + " " + eventType + "s field " + field.x + " " + field.y);
+    };
+}
+
 gameSocket.prototype.display = transmitEvent('display');
 
 gameSocket.prototype.flag = transmitEvent('flag');
@@ -58,13 +66,5 @@ gameSocket.prototype.restart = function() {
         this.startGame(roomId);
     }
 };
-
-function transmitEvent (eventType) {
-    return function(field) {
-        var roomId = this.room.getRoom(this.socket.id);
-        this.socket.broadcast.to('room_'+roomId).emit(eventType, field);
-        console.log(this.socket.id + " " + eventType + "s field " + field.x + " " + field.y);
-    };
-}
 
 exports.gameSocket = gameSocket;

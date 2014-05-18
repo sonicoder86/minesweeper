@@ -14,7 +14,7 @@ var define,
     requirejs = require('requirejs'),
     fs   = require('fs');
 
-eval(fs.readFileSync(process.cwd()+'/web/js/minesweeper/requireconfig.js')+'');
+fs.readFileSync(process.cwd()+'/web/js/minesweeper/requireconfig.js');
 
 requirejs.config({
     baseUrl: process.cwd()+'/web/js',
