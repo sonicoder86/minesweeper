@@ -1,3 +1,3 @@
-require.config({
+requirejs.config({
     baseUrl: '../web/js'
 });
