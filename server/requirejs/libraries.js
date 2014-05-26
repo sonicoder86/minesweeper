@@ -1,11 +1,12 @@
 "use strict";
 var fs   = require('fs');
+var config = require('../config');
 var setup = function(requirejs) {
     var baseDir = __dirname+'/../..';
-    fs.readFileSync(baseDir+'/web/js/minesweeper/requireconfig.js');
+    fs.readFileSync(baseDir+'/'+config.publicDir+'/minesweeper/requireconfig.js');
 
     requirejs.config({
-        baseUrl: baseDir+'/web/js',
+        baseUrl: baseDir+'/'+config.publicDir,
         urlArgs: null
     });
 

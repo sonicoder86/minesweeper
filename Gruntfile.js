@@ -1,29 +1,31 @@
 /*jshint camelcase:false */
+
+var config = require('./server/config');
 module.exports = function(grunt) {
     "use strict";
 
     grunt.initConfig({
         jshint: {
-            files: ['web/js/minesweeper/**/*.js'],
+            files: [config.publicDir + '/minesweeper/**/*.js'],
             options: {
-                ignores: ['web/js/minesweeper/application.min.js'],
+                ignores: [config.publicDir + '/minesweeper/application.min.js'],
                 jshintrc : '.jshintrc'
             }
         },
         requirejs: {
             compile: {
                 options: {
-                    baseUrl: "web/js",
+                    baseUrl: config.publicDir,
 
                     optimize: "uglify2",
                     generateSourceMaps: true,
                     preserveLicenseComments: false,
 
                     name: "minesweeper/application",
-                    mainConfigFile: "web/js/minesweeper/requireconfig.js",
-                    out: "web/js/minesweeper/application.min.js",
+                    mainConfigFile: config.publicDir + '/minesweeper/requireconfig.js',
+                    out: config.publicDir + '/minesweeper/application.min.js',
                     wrap: {
-                        startFile: ["web/js/lib/almond/almond.js"]
+                        startFile: [config.publicDir + '//lib/almond/almond.js']
                     }
                 }
             }
@@ -44,7 +46,7 @@ module.exports = function(grunt) {
             client: {
                 options: {
                     specFolders: ['tests/minesweeper/model'],
-                    projectRoot: "web/js/minesweeper",
+                    projectRoot: config.publicDir + '/minesweeper',
                     useRequireJs: "tests/lib/requireconfig/node.js"
                 },
                 all: ['tests/minesweeper/model']
@@ -72,7 +74,7 @@ module.exports = function(grunt) {
         bower: {
             install: {
                 options: {
-                    targetDir: 'web/js/lib',
+                    targetDir: config.publicDir + '/lib',
                     install: true
                 }
             }

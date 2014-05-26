@@ -1,3 +1,4 @@
+var appConf = require('./server/config');
 module.exports = function (config) {
     "use strict";
     config.set({
@@ -11,9 +12,9 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'web/js/minesweeper/requireconfig.js',
-            {pattern: 'web/js/**/*.js', included: false},
-            {pattern: 'web/js/**/*.html', included: false},
+            appConf.publicDir + '/minesweeper/requireconfig.js',
+            {pattern: appConf.publicDir + '/**/*.js', included: false},
+            {pattern: appConf.publicDir + '/**/*.html', included: false},
             {pattern: 'tests/minesweeper/**/*.js', included: false},
             'tests/lib/requireconfig/karma.js',
             'tests/helper/jquery.js'
@@ -25,7 +26,7 @@ module.exports = function (config) {
 
         // list of files to exclude
         exclude: [
-            'web/js/lib/**/*spec.js'
+            appConf.publicDir + '/lib/**/*spec.js'
         ],
 
         // test results reporter to use
