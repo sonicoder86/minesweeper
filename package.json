@@ -17,7 +17,7 @@
     "backbone": "~1.1",
     "requirejs": "~2.1",
     "bower": "~1.3",
-    "express": "~4.2",
+    "express": "~4.3",
     "errorhandler": "~1.0",
     "static-favicon": "~1.0",
     "ejs": "*",
@@ -38,7 +38,7 @@
 
     "grunt-contrib-jshint": "~0.10",
     "grunt-contrib-requirejs": "~0.4",
-    "grunt-jasmine-node": "~0.2",
+    "grunt-jasmine-node": "blacksonic/grunt-jasmine-node",
     "grunt-bower-task": "~0.3",
     "grunt-karma": "~0.8",
     "grunt-contrib-cssmin": "~0.9"
