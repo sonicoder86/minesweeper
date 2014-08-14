@@ -100,7 +100,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['test']);
     grunt.registerTask('minify', ['requirejs', 'cssmin']);
-    grunt.registerTask('install', ['bower', 'minify']);
+    grunt.registerTask('install', ['minify']);
     grunt.registerTask('start', ['forever:server:start']);
     grunt.registerTask('stop', ['forever:server:stop']);
 };
