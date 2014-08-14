@@ -16,7 +16,7 @@ Check out the [live demo](http://minesweeper-online.herokuapp.com/).
 
 Or build it on your machine!
 
-Clone the repo, run ```npm install``` then ```npm test```. If everything is green (the tests run without errors), launch the application with ```npm start```.
+Clone the repo, run ```npm install && bower install && grunt minify``` then ```npm test```. If everything is green (the tests run without errors), launch the application with ```npm start```.
 
 ## Technologies used ##
 
