@@ -44,7 +44,7 @@
     "grunt-contrib-cssmin": "~0.10"
   },
   "scripts": {
-    "test": "./node_modules/.bin/grunt test",
+    "test": "grunt test",
     "start": "node ./server/app.js"
   }
 }
