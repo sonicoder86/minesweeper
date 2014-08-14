@@ -3,7 +3,7 @@
 var config = require('./server/config');
 module.exports = function(grunt) {
     "use strict";
-
+console.log(config.publicDir);
     grunt.initConfig({
         jshint: {
             files: [config.publicDir + '/minesweeper/**/*.js'],
@@ -100,7 +100,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['test']);
     grunt.registerTask('minify', ['requirejs', 'cssmin']);
-    grunt.registerTask('install', ['minify']);
+    //grunt.registerTask('install', ['bower', 'minify']);
     grunt.registerTask('start', ['forever:server:start']);
     grunt.registerTask('stop', ['forever:server:stop']);
 };
