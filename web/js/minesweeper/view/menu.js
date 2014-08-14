@@ -1,5 +1,5 @@
 define(
-    ['marionette', 'underscore', 'text!../template/menu.html', './gametype'],
+    ['marionette', 'underscore', 'text!../template/menu.html', './gametype', 'bootstrap'],
     function (Marionette, _, html, GameTypeView)
 {
     "use strict";
@@ -7,14 +7,14 @@ define(
         template: _.template(html),
         tagName: 'ul',
         className: 'nav navbar-nav',
-        itemView: GameTypeView,
-        itemViewContainer: '#game-type-list',
+        childView: GameTypeView,
+        childViewContainer: '#game-type-list',
 
         initialize: function()
         {
-            this.listenTo(this, 'itemview:new_game', function(gameTypeView) {
+            this.listenTo(this, 'childview:new_game', function(gameTypeView) {
                 this.trigger('new_game', gameTypeView.model);
-                this.$el.find('.dropdown-menu').dropdown('toggle');
+                this.$('.dropdown-menu').dropdown('toggle');
             });
         }
     });

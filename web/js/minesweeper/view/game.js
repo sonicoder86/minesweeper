@@ -1,7 +1,7 @@
 define(['marionette', 'underscore', 'text!../template/game.html', './maze', './status', './waiting', './timer'],
 function (Marionette, _, html, MazeView, StatusView, WaitingView, TimerView) {
     "use strict";
-    return Marionette.Layout.extend({
+    return Marionette.LayoutView.extend({
         template: _.template(html),
 
         initializeGame: function(game, gameTimer) {
