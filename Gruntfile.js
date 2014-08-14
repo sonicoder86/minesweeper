@@ -3,7 +3,7 @@
 var config = require('./server/config');
 module.exports = function(grunt) {
     "use strict";
-console.log(config.publicDir);
+
     grunt.initConfig({
         jshint: {
             files: [config.publicDir + '/minesweeper/**/*.js'],
@@ -71,14 +71,6 @@ console.log(config.publicDir);
                 browsers: ['Chrome']
             }
         },
-        bower: {
-            install: {
-                options: {
-                    targetDir: config.publicDir + '/lib',
-                    install: true
-                }
-            }
-        },
         forever: {
             server: {
                 options: {
@@ -93,14 +85,13 @@ console.log(config.publicDir);
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-forever');
 
     grunt.registerTask('test', ['jshint', 'karma:continous', 'jasmine_node']);
 
     grunt.registerTask('default', ['test']);
     grunt.registerTask('minify', ['requirejs', 'cssmin']);
-    //grunt.registerTask('install', ['bower', 'minify']);
+
     grunt.registerTask('start', ['forever:server:start']);
     grunt.registerTask('stop', ['forever:server:stop']);
 };
