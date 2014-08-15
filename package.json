@@ -21,7 +21,7 @@
     "errorhandler": "~1.1",
     "static-favicon": "~1.0",
     "ejs": "*",
-    "socket.io": "~0.9",
+    "socket.io": "~1.0",
     "forever": "^0.11.1",
     "grunt": "~0.4",
     "grunt-cli": "~0.1",
@@ -39,7 +39,6 @@
     "grunt-contrib-jshint": "~0.10",
     "grunt-contrib-requirejs": "~0.4",
     "grunt-jasmine-node": "blacksonic/grunt-jasmine-node",
-    "grunt-bower-task": "~0.3",
     "grunt-karma": "~0.8",
     "grunt-contrib-cssmin": "~0.10"
   },

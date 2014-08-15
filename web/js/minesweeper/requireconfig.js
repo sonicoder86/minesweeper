@@ -10,7 +10,7 @@ requirejs.config({
         "backbone.babysitter": 'lib/backbone.babysitter/lib/backbone.babysitter',
         text: 'lib/requirejs-text/text',
         bootstrap: 'lib/bootstrap/dist/js/bootstrap',
-        socketio: 'lib/socket.io-client/dist/socket.io'
+        socketio: 'lib/socket.io-client/socket.io'
     },
 
     shim: {
