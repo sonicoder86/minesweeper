@@ -21,7 +21,6 @@ define(['marionette', 'underscore', 'text!../template/status.html'], function (M
         onShow: function() {
             this.listenTo(this.model, 'generate', this.render);
             this.listenTo(this.model, 'calculate', this.render);
-            this.listenTo(this.model, 'change:status', this.render);
         },
 
         serializeData: function ()

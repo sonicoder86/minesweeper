@@ -14,12 +14,11 @@ function (Marionette, _, html, MazeView, StatusView, WaitingView, TimerView) {
                 }
 
                 if (status === 'in_progress' && model.previous('status') === 'waiting') {
-                    this.statusRegion.show(this.statusView);
+                    this.statusRegion.show(new StatusView({model: this.model}));
                 }
             });
 
             this.createMaze();
-            this.statusView = new StatusView({model: this.model});
             this.timerView = new TimerView({model: gameTimer.timer, game: game});
         },
 
@@ -49,7 +48,7 @@ function (Marionette, _, html, MazeView, StatusView, WaitingView, TimerView) {
             this.listenTo(this.model.maze.get('fields'), 'reset', this.setMainRegionWidth);
 
             this.mainRegion.show(this.mazeView);
-            this.statusRegion.show(this.statusView);
+            this.statusRegion.show(new StatusView({model: this.model}));
             this.timerRegion.show(this.timerView);
         },
 

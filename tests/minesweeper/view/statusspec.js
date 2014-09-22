@@ -25,14 +25,6 @@ define(
             expect(view.ui.statusContainer.text()).toEqual('In progress');
         });
 
-        it('should display new status when status change', function() {
-            view.render();
-            view.onShow();
-            game.set('status', 'defeat');
-
-            expect(view.ui.statusContainer.text()).toEqual('Defeat');
-        });
-
         it('should display percent completed', function() {
             view.render();
 
