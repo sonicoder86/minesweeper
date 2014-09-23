@@ -34,6 +34,10 @@ define(['backbone', 'underscore', './timer', '../event'], function (Backbone, _,
             });
 
             this.listenTo(Event, 'timer:start', function() {
+                if (!this.game.isPlayable()) {
+                    return;
+                }
+
                 this.timer.start();
             });
 
