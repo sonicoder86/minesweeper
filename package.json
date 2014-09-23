@@ -31,6 +31,7 @@
         "karma": "~0.12",
         "karma-jasmine": "~0.1",
         "karma-requirejs": "~0.2",
+        "karma-phantomjs-launcher": "~0.1",
         "karma-chrome-launcher": "~0.1",
         "karma-script-launcher": "~0.1",
         "jasmine-node": "~1.14",
