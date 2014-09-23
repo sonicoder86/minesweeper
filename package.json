@@ -25,23 +25,24 @@
     "forever": "^0.11.1",
     "grunt": "~0.4",
     "grunt-cli": "~0.1",
-    "grunt-forever": "^0.4.4",
-
-    "karma": "~0.12",
-    "karma-jasmine": "~0.1",
-    "karma-requirejs": "~0.2",
-    "karma-phantomjs-launcher": "~0.1",
-    "karma-chrome-launcher": "~0.1",
-    "karma-script-launcher": "~0.1",
-    "jasmine-node": "~1.14",
-    "cssmin": "~0.4",
-
-    "grunt-contrib-jshint": "~0.10",
-    "grunt-contrib-requirejs": "~0.4",
-    "grunt-jasmine-node": "blacksonic/grunt-jasmine-node",
-    "grunt-karma": "~0.8",
-    "grunt-contrib-cssmin": "~0.10"
+    "grunt-forever": "^0.4.4"
   },
+    "devDependencies": {
+        "karma": "~0.12",
+        "karma-jasmine": "~0.1",
+        "karma-requirejs": "~0.2",
+        "karma-phantomjs-launcher": "~0.1",
+        "karma-chrome-launcher": "~0.1",
+        "karma-script-launcher": "~0.1",
+        "jasmine-node": "~1.14",
+        "cssmin": "~0.4",
+
+        "grunt-contrib-jshint": "~0.10",
+        "grunt-contrib-requirejs": "~0.4",
+        "grunt-jasmine-node": "blacksonic/grunt-jasmine-node",
+        "grunt-karma": "~0.8",
+        "grunt-contrib-cssmin": "~0.10"
+    },
   "scripts": {
     "test": "grunt test",
     "start": "node ./server/app.js"
