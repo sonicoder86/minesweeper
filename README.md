@@ -24,5 +24,5 @@ Clone the repo, run ```npm install && bower install``` then ```npm test```. If e
 - [Backbone](http://backbonejs.org/)
 - [Backbone Marionette](http://marionettejs.com/)
 - [Karma](http://karma-runner.github.io/)
-- [Jasmine](http://pivotal.github.io/jasmine/)
+- [Jasmine](https://jasmine.github.io/)
 - [Grunt](http://gruntjs.com/)
